@@ -66,19 +66,7 @@ const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Mobile-specific CTA */}
-        <div className="mt-8 sm:mt-12 text-center block sm:hidden">
-          <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
-            <h3 className="text-lg font-bold text-blue-900 mb-2">نیاز به مشاوره حقوقی دارید؟</h3>
-            <p className="text-sm text-blue-700 mb-4">همین الان با ما تماس بگیرید</p>
-            <a
-              href="#booking"
-              className="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-lg"
-            >
-              رزرو مشاوره رایگان
-            </a>
-          </div>
-        </div>
+
       </div>
     </section>
   );
