@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 8000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 p-4 sm:p-6 max-w-6xl mx-auto w-full flex flex-col items-center justify-center mobile-top-content" style={{ zIndex: 3 }}>
         <h1 className="font-nastaliq hero-title leading-none mb-4 animate-fade-in-down" style={{
           color: '#FFD700',
-          animation: 'golden-glow 3s ease-in-out infinite, titleFloat 4s ease-in-out infinite',
+          animation: 'golden-glow 1.5s ease-in-out infinite, titleFloat 2s ease-in-out infinite',
           textShadow: '0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 90px rgba(255, 255, 255, 0.3)',
           filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
           fontFeatureSettings: 'liga on, calt on',
@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
         </h1>
         <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 animate-fade-in-up" style={{
           color: '#FFFFFF',
-          animation: 'subtitleShimmer 4s ease-in-out infinite, subtitleFloat 6s ease-in-out infinite',
+          animation: 'subtitleShimmer 2s ease-in-out infinite, subtitleFloat 2s ease-in-out infinite',
           textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 255, 255, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)',
           filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))',
           fontFeatureSettings: 'liga on, calt on',
@@ -167,11 +167,11 @@ const Hero: React.FC = () => {
           animation-timing-function: ease-in-out;
         }
         .hero-bg.active {
-          animation: smooth-fade-in 1.5s ease-out forwards, mobile-image-float 6s ease-in-out infinite;
+          animation: smooth-fade-in 0.8s ease-out forwards, mobile-image-float 2s ease-in-out infinite;
           z-index: 2;
         }
         .hero-bg.inactive {
-          animation: smooth-fade-out 1.5s ease-out forwards;
+          animation: smooth-fade-out 0.8s ease-out forwards;
         }
 
         /* Mobile Image Effects */
@@ -438,7 +438,7 @@ const Hero: React.FC = () => {
             justify-content: flex-start !important; /* Content at top */
           }
           .hero-title {
-            font-size: 6rem !important; /* Much larger for mobile visibility */
+            font-size: 12rem !important; /* Much larger for mobile visibility */
             margin-bottom: 1.5rem !important;
             animation-duration: 3s !important;
             -webkit-text-stroke: 1px transparent !important;
