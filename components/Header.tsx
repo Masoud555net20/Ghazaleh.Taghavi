@@ -36,19 +36,7 @@ const Header: React.FC = () => {
                 </div>
               </a>
             </div>
-            <div className="hidden sm:block">
-              <h1 className="font-nastaliq text-xl lg:text-2xl font-bold text-white animate-header-title" style={{
-                animation: 'header-title-glow 2s ease-in-out infinite, header-title-float 3s ease-in-out infinite, header-title-shine 4s linear infinite',
-                textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 80px rgba(255, 255, 255, 0.2)',
-                background: 'linear-gradient(45deg, #ffffff, #f0f9ff, #e0f2fe, #ffffff)',
-                backgroundSize: '300% 300%',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                غزاله تقوی
-              </h1>
-            </div>
+
           </div>
           <nav className="hidden lg:flex items-center space-x-4 space-x-reverse text-sm">
             {navLinks.map((link, index) => (
@@ -290,11 +278,64 @@ const Header: React.FC = () => {
           100% { box-shadow: 0 6px 14px rgba(59,130,246,0.3), 0 0 20px rgba(59,130,246,0.2); } /* Back to Blue */
         }
         @media (max-width: 640px) {
-          /* increase mobile logo a bit for better visibility */
-          .animated-logo { 
-            width: 96px; 
+          /* Mobile-first logo optimization */
+          .animated-logo {
+            width: 80px !important; /* Smaller for mobile */
             animation: logo-move 6s ease-in-out infinite, logo-hue 8s linear infinite, logo-glow 8s ease-in-out infinite !important;
             box-shadow: 0 4px 12px rgba(59,130,246,0.2) !important;
+          }
+
+          /* Mobile navigation improvements */
+          .sticky {
+            backdrop-filter: blur(10px) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+          }
+
+          /* Mobile menu button positioning */
+          button.lg\\:hidden {
+            padding: 8px !important;
+            border-radius: 8px !important;
+            background: rgba(59, 130, 246, 0.1) !important;
+            border: 1px solid rgba(59, 130, 246, 0.2) !important;
+          }
+
+          /* Mobile menu styling */
+          .lg\\:hidden.bg-white {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(10px) !important;
+            border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+          }
+
+          /* Mobile menu links */
+          .lg\\:hidden nav {
+            padding: 1rem 1.5rem !important;
+          }
+
+          .lg\\:hidden a {
+            padding: 0.75rem 1rem !important;
+            border-radius: 8px !important;
+            margin-bottom: 0.5rem !important;
+            font-size: 1rem !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+            border-left: 3px solid transparent !important;
+          }
+
+          .lg\\:hidden a:hover {
+            background: rgba(59, 130, 246, 0.1) !important;
+            border-left-color: #3b82f6 !important;
+            transform: translateX(4px) !important;
+          }
+
+          /* Mobile CTA button */
+          .lg\\:hidden a[href="#booking"] {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+            color: white !important;
+            margin-top: 1rem !important;
+            padding: 1rem !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
           }
         }
         @media (prefers-reduced-motion: reduce) {

@@ -6,6 +6,8 @@ import About from './components/About';
 import Services from './components/Services';
 import Process from './components/Process';
 import Footer from './components/Footer';
+import { ThemeProvider, useTheme } from './components/ThemeProvider';
+import ThemeSelector from './components/ThemeSelector';
 
 const LazyLegalAssistant = lazy(() => import('./components/LegalAssistant'));
 const LazyFAQ = lazy(() => import('./components/FAQ'));
@@ -14,9 +16,20 @@ const LazyPayment = lazy(() => import('./components/Payment'));
 const LazyTestimonials = lazy(() => import('./components/Testimonials'));
 const LazyBlog = lazy(() => import('./components/Blog'));
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
+  const { currentTheme, setTheme } = useTheme();
+
+  // Temporary default styles since themes are disabled
+  const defaultStyles = {
+    background: '#ffffff',
+    color: '#000000'
+  };
+
   return (
-    <div className="bg-gray-50 text-gray-800">
+    <div
+      className="min-h-screen transition-all duration-500"
+      style={defaultStyles}
+    >
       <Header />
       <main>
         <Hero />
@@ -33,7 +46,16 @@ const App: React.FC = () => {
         </Suspense>
       </main>
       <Footer />
+      <ThemeSelector currentTheme={currentTheme} onThemeChange={setTheme} />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 };
 
