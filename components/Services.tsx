@@ -1,0 +1,68 @@
+
+import React from 'react';
+import type { Service } from '../types';
+import { ScaleIcon, BuildingOffice2Icon, UsersIcon, ShieldCheckIcon, BanknotesIcon, HomeModernIcon } from './Icons';
+
+const servicesData: Service[] = [
+  {
+    icon: <ScaleIcon />,
+    title: 'دعاوی حقوقی',
+    description: 'مشاوره و وکالت در کلیه دعاوی ملکی، قراردادها، مطالبات، امور ثبتی و خانواده.',
+  },
+  {
+    icon: <ShieldCheckIcon />,
+    title: 'دعاوی کیفری',
+    description: 'دفاع از حقوق شما در تمامی مراحل دادسرا و دادگاه در جرائم مختلف.',
+  },
+  {
+    icon: <UsersIcon />,
+    title: 'امور خانواده',
+    description: 'وکالت تخصصی در پرونده‌های طلاق، مهریه، نفقه، حضانت فرزندان و انحصار وراثت.',
+  },
+  {
+    icon: <BuildingOffice2Icon />,
+    title: 'شرکت‌های تجاری',
+    description: 'ارائه مشاوره حقوقی به شرکت‌ها، تنظیم قراردادهای تجاری و دعاوی مرتبط.',
+  },
+  {
+    icon: <BanknotesIcon />,
+    title: 'چک و اسناد تجاری',
+    description: 'پیگیری حقوقی و کیفری جهت وصول مطالبات ناشی از چک، سفته و سایر اسناد تجاری.',
+  },
+  {
+    icon: <HomeModernIcon />,
+    title: 'املاک و اراضی',
+    description: 'مشاوره در خرید و فروش ملک، تنظیم مبایعه‌نامه، دعاوی خلع ید و الزام به تنظیم سند.',
+  },
+];
+
+const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
+  <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-center">
+    <div className="mx-auto mb-6 flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-full">
+      {service.icon}
+    </div>
+    <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
+    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+  </div>
+);
+
+const Services: React.FC = () => {
+  return (
+    <section id="services" className="py-20 bg-gray-100">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">حوزه‌های تخصصی وکالت</h2>
+          <p className="mt-4 text-lg text-gray-600">ارائه خدمات حقوقی جامع و تخصصی برای احقاق حقوق شما</p>
+          <div className="mt-4 w-24 h-1 bg-blue-700 mx-auto rounded"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {servicesData.map((service, index) => (
+            <ServiceCard key={index} service={service} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Services;
