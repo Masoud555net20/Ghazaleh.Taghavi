@@ -45,14 +45,14 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Menu - Centered and prominent */}
+          {/* Navigation Menu - Centered and properly sized */}
           <nav className="hidden lg:flex items-center flex-1 justify-center">
             <div className={`flex items-center gap-1 xl:gap-2 text-sm xl:text-base ${isScrolled ? 'bg-gray-50/80' : 'bg-white/10'} rounded-xl px-4 py-3 shadow-sm`} style={{backdropFilter: isScrolled ? 'none' : 'blur(10px)'}}>
               {navLinks.map((link, index) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`transition-all duration-300 font-semibold px-3 py-2 whitespace-nowrap rounded-lg text-sm xl:text-base ${isScrolled ? 'text-gray-800 hover:text-blue-700 hover:bg-blue-100 hover:shadow-md' : 'text-gray-100 hover:text-white hover:bg-white/20 hover:shadow-lg'}`}
+                  className={`transition-all duration-300 font-medium px-3 py-2 whitespace-nowrap rounded-lg text-sm xl:text-base ${isScrolled ? 'text-gray-800 hover:text-blue-700 hover:bg-blue-100 hover:shadow-md' : 'text-gray-100 hover:text-white hover:bg-white/20 hover:shadow-lg'}`}
                   style={{
                     animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
                     fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif'
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
             </div>
           </nav>
 
-          {/* CTA Button - Wider and more prominent for mobile */}
+          {/* CTA Button - Properly sized for all devices */}
           <div className="flex items-center flex-shrink-0 ml-3">
             <a href={isHonorsPage ? '/#booking' : '#booking'} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 text-sm xl:text-base shadow-xl hover:shadow-2xl whitespace-nowrap" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
               رزرو وقت مشاوره

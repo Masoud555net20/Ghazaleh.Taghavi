@@ -124,15 +124,15 @@ html {
 }
 
 @media (min-width: 640px) {
-  html { font-size: 17px; }
+  html { font-size: 15px; } /* Slightly smaller for small tablets */
 }
 
 @media (min-width: 768px) {
-  html { font-size: 18px; }
+  html { font-size: 16px; } /* Normal size for tablets */
 }
 
 @media (min-width: 1024px) {
-  html { font-size: 19px; }
+  html { font-size: 15px; } /* Slightly smaller for desktop to accommodate larger menus */
 }
 
 body {
@@ -142,6 +142,7 @@ body {
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 600; /* Increased to semi-bold for better readability */
 }
 
 /* Mobile-first utility classes */
@@ -201,6 +202,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-bottom: 1rem;
+  font-weight: 600; /* Increased font weight for better readability */
 }
 
 /* Enhanced mobile typography for better readability */
@@ -218,6 +220,7 @@ p {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
+    font-weight: 600; /* Even thicker for mobile readability */
   }
 
   /* Larger buttons and interactive elements */
@@ -246,6 +249,7 @@ p {
   p {
     font-size: 1.05rem;
     line-height: 1.7;
+    font-weight: 600; /* Semi-bold weight for tablet readability */
   }
 }
 
