@@ -32,70 +32,80 @@ const Header: React.FC = () => {
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-xl border-b border-black/10' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 py-0 max-w-7xl">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-20 sm:w-24 lg:w-20 h-auto">
-              <a href={isHonorsPage ? '/' : '#'} className="transition-all duration-300 hover:scale-110">
+      <div className="container mx-auto px-4 py-4 max-w-7xl">
+        <div className="flex items-center justify-between gap-3">
+          {/* Logo Section - Even Larger for mobile */}
+          <div className="flex items-center flex-shrink-0">
+            <div className="w-24 sm:w-28 lg:w-18 xl:w-20 h-auto">
+              <a href={isHonorsPage ? '/' : '#'} className="transition-all duration-300 hover:scale-110 block">
                 <div className="relative">
-                  <img src="/5.png" alt="غزاله تقوی" className="w-20 sm:w-24 lg:w-20 h-auto animated-logo max-w-full rounded-full" />
+                  <img src="/5.png" alt="غزاله تقوی" className="w-24 sm:w-28 lg:w-18 xl:w-20 h-auto animated-logo max-w-full rounded-full shadow-xl ring-2 ring-white/30" />
                 </div>
               </a>
             </div>
-
           </div>
-          <nav className="hidden lg:flex items-center space-x-4 space-x-reverse text-sm">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`transition-colors duration-300 font-medium px-2 py-1 whitespace-nowrap iranian-sans ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-gray-200 hover:text-white'}`}
-                style={{
-                  animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
-                  fontFamily: 'Iranian Sans, Vazirmatn, sans-serif'
-                }}
-              >
-                {link.name}
-              </a>
-            ))}
+
+          {/* Navigation Menu - Centered and prominent */}
+          <nav className="hidden lg:flex items-center flex-1 justify-center">
+            <div className={`flex items-center gap-1 xl:gap-2 text-sm xl:text-base ${isScrolled ? 'bg-gray-50/80' : 'bg-white/10'} rounded-xl px-4 py-3 shadow-sm`} style={{backdropFilter: isScrolled ? 'none' : 'blur(10px)'}}>
+              {navLinks.map((link, index) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`transition-all duration-300 font-semibold px-3 py-2 whitespace-nowrap rounded-lg text-sm xl:text-base ${isScrolled ? 'text-gray-800 hover:text-blue-700 hover:bg-blue-100 hover:shadow-md' : 'text-gray-100 hover:text-white hover:bg-white/20 hover:shadow-lg'}`}
+                  style={{
+                    animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
+                    fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif'
+                  }}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
           </nav>
-          <a href={isHonorsPage ? '/#booking' : '#booking'} className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105 iranian-sans">
-            رزرو وقت مشاوره
-          </a>
-          <button 
-            className={`lg:hidden ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+
+          {/* CTA Button - Wider and more prominent for mobile */}
+          <div className="flex items-center flex-shrink-0 ml-3">
+            <a href={isHonorsPage ? '/#booking' : '#booking'} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 text-sm xl:text-base shadow-xl hover:shadow-2xl whitespace-nowrap" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
+              رزرو وقت مشاوره
+            </a>
+          </div>
+          <button
+            className={`lg:hidden p-3 rounded-xl transition-all duration-300 ${isScrolled ? 'text-gray-800 bg-gray-100 hover:bg-gray-200 shadow-md' : 'text-white bg-white/10 hover:bg-white/20 shadow-lg'} backdrop-blur-sm`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
         </div>
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-200">
-            <nav className="flex flex-col space-y-4 py-4 px-6">
+          <div className="lg:hidden bg-white border-t border-gray-200 shadow-xl">
+            <nav className="flex flex-col space-y-2 py-8 px-6">
             {navLinks.map((link, index) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 iranian-sans"
+                  className="text-gray-800 hover:text-blue-700 font-bold transition-all duration-300 text-xl py-5 px-6 rounded-2xl hover:bg-blue-50 hover:shadow-lg border border-gray-200"
                   style={{
                     animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
-                    fontFamily: 'Iranian Sans, Vazirmatn, sans-serif'
+                    fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif'
                   }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              <a
-                href={isHonorsPage ? '/#booking' : '#booking'}
-                className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors duration-300 text-center mt-4 iranian-sans"
-                style={{ fontFamily: 'Iranian Sans, Vazirmatn, sans-serif' }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                رزرو وقت مشاوره
-              </a>
+              <div className="pt-4 border-t border-gray-200 mt-4">
+                <a
+                  href={isHonorsPage ? '/#booking' : '#booking'}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-5 px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center text-lg shadow-lg hover:shadow-xl transform hover:scale-105 block w-full"
+                  style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  رزرو وقت مشاوره
+                </a>
+              </div>
             </nav>
           </div>
         )}
@@ -353,6 +363,63 @@ const Header: React.FC = () => {
         }
         @media (prefers-reduced-motion: reduce) {
           .animated-logo { animation: none !important; filter: none !important; box-shadow: none !important; transform: none !important; }
+        }
+
+        /* Enhanced responsive design for better alignment */
+        @media (min-width: 1024px) and (max-width: 1280px) {
+          /* Tablet and smaller desktop screens */
+          .container .mx-auto .px-4 .py-3 .max-w-7xl nav {
+            margin-left: 1rem !important;
+            margin-right: 1rem !important;
+          }
+
+          .container .mx-auto .px-4 .py-3 .max-w-7xl nav .flex {
+            gap: 0.25rem !important;
+          }
+
+          .container .mx-auto .px-4 .py-3 .max-w-7xl nav .flex a {
+            font-size: 0.75rem !important;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+          }
+        }
+
+        @media (min-width: 1280px) {
+          /* Large desktop screens */
+          .container .mx-auto .px-4 .py-3 .max-w-7xl nav {
+            margin-left: 2rem !important;
+            margin-right: 2rem !important;
+          }
+        }
+
+        /* Ensure proper text rendering at 100% zoom */
+        @media screen and (-webkit-min-device-pixel-ratio: 1) {
+          .container .mx-auto .px-4 .py-3 .max-w-7xl nav a {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        }
+
+        /* High DPI displays */
+        @media screen and (-webkit-min-device-pixel-ratio: 2),
+               screen and (min-resolution: 192dpi) {
+          .animated-logo {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+          }
+        }
+
+        /* Prevent layout shift on hover */
+        .container .mx-auto .px-4 .py-3 .max-w-7xl nav a {
+          will-change: transform, color, background-color;
+          backface-visibility: hidden;
+          transform: translateZ(0);
+        }
+
+        /* Better text spacing for Persian/Arabic text */
+        .container .mx-auto .px-4 .py-3 .max-w-7xl nav .flex a {
+          letter-spacing: 0.02em;
+          word-spacing: 0.1em;
         }
         @keyframes multi-color-border {
           0% { border-color: rgba(59, 130, 246, 1); }
