@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
 
       {/* Content - Positioned higher for mobile */}
       <div className="relative z-10 p-4 sm:p-6 max-w-6xl mx-auto w-full flex flex-col items-center justify-center mobile-top-content" style={{ zIndex: 3 }}>
-        <h1 className="font-nastaliq hero-title leading-none mb-4 animate-fade-in-down persian-title" style={{
+        <h1 className="hero-title leading-none mb-4 animate-fade-in-down" style={{
           color: '#FFD700',
           animation: 'golden-glow 1.5s ease-in-out infinite, titleFloat 2s ease-in-out infinite',
           textShadow: '0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 90px rgba(255, 255, 255, 0.3)',
@@ -71,12 +71,11 @@ const Hero: React.FC = () => {
           wordSpacing: '0px',
           lineHeight: '1.3',
           direction: 'rtl',
-          unicodeBidi: 'embed',
-          fontFamily: 'IranNastaliq, Vazirmatn, serif'
+          unicodeBidi: 'embed'
         }}>
           غزاله تقوی
         </h1>
-        <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 animate-fade-in-up persian-text" style={{
+        <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 animate-fade-in-up" style={{
           color: '#FFFFFF',
           animation: 'subtitleShimmer 2s ease-in-out infinite, subtitleFloat 2s ease-in-out infinite',
           textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 255, 255, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)',
@@ -90,8 +89,7 @@ const Hero: React.FC = () => {
           lineHeight: '1.8',
           direction: 'rtl',
           unicodeBidi: 'embed',
-          fontWeight: '500',
-          fontFamily: 'IranNastaliq, Vazirmatn, serif'
+          fontWeight: '500'
         }}>
           وکیل پایه یک دادگستری و میانجیگر رسمی قوه قضائیه
         </p>

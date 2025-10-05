@@ -49,17 +49,14 @@ const Header: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`transition-colors duration-300 font-medium px-2 py-1 whitespace-nowrap persian-text ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-gray-200 hover:text-white'}`}
-                style={{
-                  animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
-                  fontFamily: 'IranNastaliq, Vazirmatn, serif'
-                }}
+                className={`transition-colors duration-300 font-medium px-2 py-1 whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-gray-200 hover:text-white'}`}
+                style={{ animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s` }}
               >
                 {link.name}
               </a>
             ))}
           </nav>
-          <a href={isHonorsPage ? '/#booking' : '#booking'} className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105 persian-text" style={{ fontFamily: 'IranNastaliq, Vazirmatn, serif' }}>
+          <a href={isHonorsPage ? '/#booking' : '#booking'} className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105">
             رزرو وقت مشاوره
           </a>
           <button 
@@ -78,11 +75,8 @@ const Header: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 persian-text"
-                  style={{
-                    animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
-                    fontFamily: 'IranNastaliq, Vazirmatn, serif'
-                  }}
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
+                  style={{ animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s` }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
