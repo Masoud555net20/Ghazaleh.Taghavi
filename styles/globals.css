@@ -43,13 +43,7 @@ img {
   font-display: swap;
 }
 
-body {
-  font-family: 'Iranian Sans', 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-display: swap;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Body font moved to later declaration to ensure proper cascade */
 
 /* Persian title styling for main title only */
 .nastaliq-title {
@@ -94,7 +88,7 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Shabnam', 'Vazir', 'Samim', 'Nahid', 'Iranian Sans', 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);

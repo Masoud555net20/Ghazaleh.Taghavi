@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
           lineHeight: '1.3',
           direction: 'rtl',
           unicodeBidi: 'embed',
-          fontFamily: 'IranNastaliq, Vazirmatn, serif'
+          fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif'
         }}>
           غزاله تقوی
         </h1>
@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
           direction: 'rtl',
           unicodeBidi: 'embed',
           fontWeight: '500',
-          fontFamily: 'Iranian Sans, Vazirmatn, sans-serif'
+          fontFamily: 'Shabnam, Vazir, Samim, Nahid, Iranian Sans, Vazirmatn, sans-serif'
         }}>
           وکیل پایه یک دادگستری و میانجیگر رسمی قوه قضائیه
         </p>
