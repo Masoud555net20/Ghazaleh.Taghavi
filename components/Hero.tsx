@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
         }}>
           غزاله تقوی
         </h1>
-        <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 animate-fade-in-up" style={{
+        <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 animate-fade-in-up iranian-sans" style={{
           color: '#FFFFFF',
           animation: 'subtitleShimmer 2s ease-in-out infinite, subtitleFloat 2s ease-in-out infinite',
           textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 255, 255, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)',
@@ -90,7 +90,8 @@ const Hero: React.FC = () => {
           lineHeight: '1.8',
           direction: 'rtl',
           unicodeBidi: 'embed',
-          fontWeight: '500'
+          fontWeight: '500',
+          fontFamily: 'Iranian Sans, Vazirmatn, sans-serif'
         }}>
           وکیل پایه یک دادگستری و میانجیگر رسمی قوه قضائیه
         </p>

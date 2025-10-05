@@ -49,8 +49,11 @@ const Header: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`transition-colors duration-300 font-medium px-2 py-1 whitespace-nowrap ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-gray-200 hover:text-white'}`}
-                style={{ animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s` }}
+                className={`transition-colors duration-300 font-medium px-2 py-1 whitespace-nowrap iranian-sans ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-gray-200 hover:text-white'}`}
+                style={{
+                  animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
+                  fontFamily: 'Iranian Sans, Vazirmatn, sans-serif'
+                }}
               >
                 {link.name}
               </a>
@@ -75,8 +78,11 @@ const Header: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300"
-                  style={{ animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s` }}
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 iranian-sans"
+                  style={{
+                    animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
+                    fontFamily: 'Iranian Sans, Vazirmatn, sans-serif'
+                  }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -84,7 +90,8 @@ const Header: React.FC = () => {
               ))}
               <a
                 href={isHonorsPage ? '/#booking' : '#booking'}
-                className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors duration-300 text-center mt-4"
+                className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors duration-300 text-center mt-4 iranian-sans"
+                style={{ fontFamily: 'Iranian Sans, Vazirmatn, sans-serif' }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 رزرو وقت مشاوره
