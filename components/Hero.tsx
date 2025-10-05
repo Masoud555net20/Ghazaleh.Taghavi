@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LazyImage from './LazyImage';
 
 const images = [
   '/1.png',
@@ -10,14 +11,26 @@ const images = [
 
 const Hero: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 4000); // Increased interval for better performance
 
     return () => clearInterval(intervalId);
   }, []);
+
+  const handleImageLoad = (index: number) => {
+    setImagesLoaded(prev => new Set([...prev, index]));
+  };
+
+  // Preload next image for smoother transitions
+  useEffect(() => {
+    const nextIndex = (currentIndex + 1) % images.length;
+    const preloadImg = new Image();
+    preloadImg.src = images[nextIndex];
+  }, [currentIndex]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-start justify-center text-white text-center overflow-hidden bg-black pt-[15vh] sm:pt-0 sm:items-center">

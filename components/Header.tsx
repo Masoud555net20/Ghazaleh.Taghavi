@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,16 +14,20 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // اگر در صفحه گالری افتخارات هستیم، لینک‌های anchor باید به صفحه اصلی اشاره کنن
+  const isHonorsPage = location.pathname === '/honors';
+
   const navLinks = [
-    { name: 'خدمات', href: '#services' },
-    { name: 'درباره من', href: '#about' },
-    { name: 'روند کار', href: '#process' },
-    { name: 'مشاور هوشمند', href: '#assistant' },
-    { name: 'پرداخت', href: '#payment' },
-    { name: 'سوالات متداول', href: '#faq' },
-    { name: 'مقالات', href: '#blog' },
-    { name: 'نظرات موکلین', href: '#testimonials' },
-    { name: 'ارتباط با ما', href: '#contact' },
+    { name: 'خدمات', href: isHonorsPage ? '/#services' : '#services' },
+    { name: 'درباره من', href: isHonorsPage ? '/#about' : '#about' },
+    { name: 'روند کار', href: isHonorsPage ? '/#process' : '#process' },
+    { name: 'گالری افتخارات', href: '/honors' },
+    { name: 'مشاور هوشمند', href: isHonorsPage ? '/#assistant' : '#assistant' },
+    { name: 'پرداخت', href: isHonorsPage ? '/#payment' : '#payment' },
+    { name: 'سوالات متداول', href: isHonorsPage ? '/#faq' : '#faq' },
+    { name: 'مقالات', href: isHonorsPage ? '/#blog' : '#blog' },
+    { name: 'نظرات موکلین', href: isHonorsPage ? '/#testimonials' : '#testimonials' },
+    { name: 'ارتباط با ما', href: isHonorsPage ? '/#contact' : '#contact' },
   ];
 
   return (
@@ -30,7 +36,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-20 sm:w-24 lg:w-20 h-auto">
-              <a href="#" className="transition-all duration-300 hover:scale-110">
+              <a href={isHonorsPage ? '/' : '#'} className="transition-all duration-300 hover:scale-110">
                 <div className="relative">
                   <img src="/5.png" alt="غزاله تقوی" className="w-20 sm:w-24 lg:w-20 h-auto animated-logo max-w-full rounded-full" />
                 </div>
@@ -50,7 +56,7 @@ const Header: React.FC = () => {
               </a>
             ))}
           </nav>
-          <a href="#booking" className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105">
+          <a href={isHonorsPage ? '/#booking' : '#booking'} className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105">
             رزرو وقت مشاوره
           </a>
           <button 
@@ -76,8 +82,8 @@ const Header: React.FC = () => {
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="#booking" 
+              <a
+                href={isHonorsPage ? '/#booking' : '#booking'}
                 className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors duration-300 text-center mt-4"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -280,62 +286,62 @@ const Header: React.FC = () => {
         @media (max-width: 640px) {
           /* Mobile-first logo optimization */
           .animated-logo {
-            width: 80px !important; /* Smaller for mobile */
-            animation: logo-move 6s ease-in-out infinite, logo-hue 8s linear infinite, logo-glow 8s ease-in-out infinite !important;
-            box-shadow: 0 4px 12px rgba(59,130,246,0.2) !important;
+            width: 75px !important; /* Smaller for mobile */
+            animation: logo-move 12s ease-in-out infinite, logo-hue 15s linear infinite, logo-glow 15s ease-in-out infinite !important;
+            box-shadow: 0 1px 4px rgba(59,130,246,0.1) !important;
           }
 
           /* Mobile navigation improvements */
           .sticky {
-            backdrop-filter: blur(10px) !important;
-            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(5px) !important;
+            background: rgba(255, 255, 255, 0.88) !important;
           }
 
           /* Mobile menu button positioning */
           button.lg\\:hidden {
-            padding: 8px !important;
-            border-radius: 8px !important;
-            background: rgba(59, 130, 246, 0.1) !important;
-            border: 1px solid rgba(59, 130, 246, 0.2) !important;
+            padding: 3px !important;
+            border-radius: 3px !important;
+            background: rgba(59, 130, 246, 0.05) !important;
+            border: 1px solid rgba(59, 130, 246, 0.1) !important;
           }
 
           /* Mobile menu styling */
           .lg\\:hidden.bg-white {
-            background: rgba(255, 255, 255, 0.98) !important;
-            backdrop-filter: blur(10px) !important;
-            border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(5px) !important;
+            border-top: 1px solid rgba(59, 130, 246, 0.05) !important;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05) !important;
           }
 
           /* Mobile menu links */
           .lg\\:hidden nav {
-            padding: 1rem 1.5rem !important;
+            padding: 0.4rem 0.6rem !important;
           }
 
           .lg\\:hidden a {
-            padding: 0.75rem 1rem !important;
-            border-radius: 8px !important;
-            margin-bottom: 0.5rem !important;
-            font-size: 1rem !important;
+            padding: 0.3rem 0.5rem !important;
+            border-radius: 3px !important;
+            margin-bottom: 0.15rem !important;
+            font-size: 0.8rem !important;
             font-weight: 500 !important;
-            transition: all 0.3s ease !important;
-            border-left: 3px solid transparent !important;
+            transition: all 0.15s ease !important;
+            border-left: 2px solid transparent !important;
           }
 
           .lg\\:hidden a:hover {
-            background: rgba(59, 130, 246, 0.1) !important;
+            background: rgba(59, 130, 246, 0.05) !important;
             border-left-color: #3b82f6 !important;
-            transform: translateX(4px) !important;
+            transform: translateX(1px) !important;
           }
 
           /* Mobile CTA button */
           .lg\\:hidden a[href="#booking"] {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
             color: white !important;
-            margin-top: 1rem !important;
-            padding: 1rem !important;
-            border-radius: 12px !important;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+            margin-top: 0.4rem !important;
+            padding: 0.5rem !important;
+            border-radius: 6px !important;
+            box-shadow: 0 1px 6px rgba(59, 130, 246, 0.2) !important;
           }
         }
         @media (prefers-reduced-motion: reduce) {

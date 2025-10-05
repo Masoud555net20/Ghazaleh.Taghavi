@@ -105,52 +105,55 @@ const Footer: React.FC = () => {
               </span>
             </div>
 
-            <div className="w-full max-w-2xl mx-auto mt-4 relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 rounded-lg blur-xl animate-pulse"></div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.83!2d48.5146!3d34.7990!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8a5b0b0b0b0b0b%3A0x0!2zSGFtYWRhbiwgSVI!5e0!3m2!1sen!2sus!4v1690000000000"
-                width="100%"
-                height="300"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-64 rounded-lg shadow-2xl relative z-10 transition-all duration-500 hover:shadow-blue-500/50 hover:shadow-3xl hover:scale-105 hover:-translate-y-2 border-2 border-blue-300/30"
-                title="Location Map"
-              ></iframe>
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none animate-gradient-y"></div>
-            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+              {/* Map Section */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 rounded-lg blur-xl animate-pulse"></div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.83!2d48.5146!3d34.7990!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8a5b0b0b0b0b0b%3A0x0!2zSGFtYWRhbiwgSVI!5e0!3m2!1sen!2sus!4v1690000000000"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-64 rounded-lg shadow-2xl relative z-10 transition-all duration-500 hover:shadow-blue-500/50 hover:shadow-3xl hover:scale-105 hover:-translate-y-2 border-2 border-blue-300/30"
+                  title="Location Map"
+                ></iframe>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-blue-900/10 via-transparent to-purple-900/10 pointer-events-none animate-gradient-y"></div>
+              </div>
 
-            {/* Business Hours */}
-            <div className="relative max-w-lg mx-auto mt-4">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 rounded-xl blur-xl animate-pulse"></div>
-              <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-2xl hover:shadow-purple-500/30 transition-all duration-500 hover:scale-105 hover:bg-white/15">
-                <div className="text-center space-y-3">
-                  <div className="flex items-center justify-center gap-2 mb-3">
-                    <div className="relative">
-                      <svg className="w-6 h-6 text-yellow-400 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                      <div className="absolute inset-0 bg-yellow-400/30 rounded-full blur-md animate-pulse"></div>
+              {/* Business Hours Section */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 rounded-xl blur-xl animate-pulse"></div>
+                <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 shadow-2xl hover:shadow-purple-500/30 transition-all duration-500 hover:scale-105 hover:bg-white/15 h-full">
+                  <div className="text-center space-y-3 h-full flex flex-col justify-center">
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <div className="relative">
+                        <svg className="w-6 h-6 text-yellow-400 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <div className="absolute inset-0 bg-yellow-400/30 rounded-full blur-md animate-pulse"></div>
+                      </div>
+                      <h3 className="text-3xl font-bold text-white font-nastaliq">
+                        ساعات کاری
+                      </h3>
                     </div>
-                    <h3 className="text-3xl font-bold text-white font-nastaliq">
-                      ساعات کاری
-                    </h3>
-                  </div>
 
-                  <div className="space-y-3 text-gray-200">
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10 hover:bg-white/10 transition-all duration-300">
-                      <span className="text-lg font-bold text-green-400">شنبه تا چهارشنبه:</span>
-                      <span className="text-lg font-bold text-white">۸:۰۰ تا ۱۸:۰۰</span>
+                    <div className="space-y-3 text-gray-200">
+                      <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                        <span className="text-lg font-bold text-green-400">شنبه تا چهارشنبه:</span>
+                        <span className="text-lg font-bold text-white">۸:۰۰ تا ۱۸:۰۰</span>
+                      </div>
+                      <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                        <span className="text-lg font-bold text-red-400">پنجشنبه و جمعه:</span>
+                        <span className="text-lg font-bold text-white">تعطیل</span>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3 border border-white/10 hover:bg-white/10 transition-all duration-300">
-                      <span className="text-lg font-bold text-red-400">پنجشنبه و جمعه:</span>
-                      <span className="text-lg font-bold text-white">تعطیل</span>
-                    </div>
-                  </div>
 
-                  <div className="text-sm text-gray-300 mt-4 opacity-90 font-medium">
-                    آماده ارائه خدمات حقوقی در ساعات کاری
+                    <div className="text-sm text-gray-300 mt-4 opacity-90 font-medium">
+                      آماده ارائه خدمات حقوقی در ساعات کاری
+                    </div>
                   </div>
                 </div>
               </div>
