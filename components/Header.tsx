@@ -56,7 +56,7 @@ const Header: React.FC = () => {
               </a>
             ))}
           </nav>
-          <a href={isHonorsPage ? '/#booking' : '#booking'} className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105">
+          <a href={isHonorsPage ? '/#booking' : '#booking'} className="hidden md:inline-block bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-800 transition-transform duration-300 hover:scale-105 iranian-sans">
             رزرو وقت مشاوره
           </a>
           <button 

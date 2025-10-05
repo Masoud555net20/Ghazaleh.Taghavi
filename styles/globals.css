@@ -35,8 +35,16 @@ img {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Iranian Sans';
+  src: url('/Font/Iranian Sans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
-  font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Iranian Sans', 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-display: swap;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -48,6 +56,11 @@ body {
   font-family: 'IranNastaliq', 'Vazirmatn', serif;
   direction: rtl;
   text-align: right;
+}
+
+/* Iranian Sans for buttons and UI elements */
+.iranian-sans {
+  font-family: 'Iranian Sans', 'Vazirmatn', sans-serif;
 }
 
 /* GPU acceleration for animations */

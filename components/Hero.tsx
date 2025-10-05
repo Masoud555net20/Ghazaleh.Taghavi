@@ -95,19 +95,19 @@ const Hero: React.FC = () => {
           وکیل پایه یک دادگستری و میانجیگر رسمی قوه قضائیه
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up animation-delay-300">
-          <a href="#booking" className="luxury-button primary-button font-semibold py-4 px-8 sm:py-3 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-sm sm:text-base relative overflow-hidden group">
+          <a href="#booking" className="luxury-button primary-button font-semibold py-4 px-8 sm:py-3 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-sm sm:text-base relative overflow-hidden group iranian-sans">
             <span className="relative z-10 text-white font-bold tracking-wide">رزرو وقت مشاوره</span>
             <div className="absolute inset-0 bg-blue-800 opacity-90 group-hover:opacity-100 transition-all duration-300"></div>
             <div className="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-50 transition-all duration-300"></div>
             <div className="absolute inset-0 border-2 border-blue-600/50 rounded-2xl group-hover:border-blue-400/80 transition-all duration-300"></div>
           </a>
-          <a href="#services" className="luxury-button glass-button font-semibold py-4 px-8 sm:py-3 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-sm sm:text-base relative overflow-hidden group">
+          <a href="#services" className="luxury-button glass-button font-semibold py-4 px-8 sm:py-3 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-sm sm:text-base relative overflow-hidden group iranian-sans">
             <span className="relative z-10 text-white font-bold tracking-wide">آشنایی با خدمات</span>
             <div className="absolute inset-0 bg-blue-600/90 backdrop-blur-md group-hover:backdrop-blur-lg transition-all duration-300"></div>
             <div className="absolute inset-0 border-2 border-blue-500/60 rounded-2xl group-hover:border-blue-300/80 transition-all duration-300"></div>
             <div className="absolute inset-0 bg-blue-500/50 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
           </a>
-          <a href="#contact" className="luxury-button secondary-button font-semibold py-4 px-8 sm:py-3 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-sm sm:text-base relative overflow-hidden group">
+          <a href="#contact" className="luxury-button secondary-button font-semibold py-4 px-8 sm:py-3 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-sm sm:text-base relative overflow-hidden group iranian-sans">
             <span className="relative z-10 text-white font-bold tracking-wide">ارتباط با ما</span>
             <div className="absolute inset-0 bg-blue-900 opacity-90 group-hover:opacity-100 transition-all duration-300"></div>
             <div className="absolute inset-0 bg-blue-800 opacity-0 group-hover:opacity-40 transition-all duration-300"></div>
