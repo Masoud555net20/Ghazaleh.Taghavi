@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
 
       {/* Content - Positioned higher for mobile */}
       <div className="relative z-10 p-4 sm:p-6 max-w-6xl mx-auto w-full flex flex-col items-center justify-center mobile-top-content" style={{ zIndex: 3 }}>
-        <h1 className="hero-title leading-none mb-4 animate-fade-in-down" style={{
+        <h1 className="hero-title leading-none mb-4 animate-fade-in-down nastaliq-title" style={{
           color: '#FFD700',
           animation: 'golden-glow 1.5s ease-in-out infinite, titleFloat 2s ease-in-out infinite',
           textShadow: '0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 90px rgba(255, 255, 255, 0.3)',
@@ -71,7 +71,8 @@ const Hero: React.FC = () => {
           wordSpacing: '0px',
           lineHeight: '1.3',
           direction: 'rtl',
-          unicodeBidi: 'embed'
+          unicodeBidi: 'embed',
+          fontFamily: 'IranNastaliq, Vazirmatn, serif'
         }}>
           غزاله تقوی
         </h1>
