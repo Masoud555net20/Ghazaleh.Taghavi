@@ -28,10 +28,10 @@ const Footer: React.FC = () => {
       <div className="relative max-w-4xl mx-auto text-center space-y-8 z-10">
         {/* Main Title */}
         <div className="space-y-2">
-          <h2 className="text-6xl md:text-8xl font-extrabold font-nastaliq text-white drop-shadow-2xl">
+          <h2 className="text-6xl md:text-8xl font-extrabold font-nastaliq text-white drop-shadow-2xl" style={{ fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif' }}>
             غزاله تقوی
           </h2>
-          <p className="text-lg md:text-xl text-gray-200 font-light">
+          <p className="text-lg md:text-xl text-gray-200 font-light" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
             وکیل پایه یک دادگستری
           </p>
         </div>
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                   <PhoneIcon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-pulse" />
                   <div className="absolute inset-0 bg-blue-400/30 rounded-full blur-md scale-0 group-hover:scale-150 transition-transform duration-300"></div>
                 </div>
-                <span dir="ltr" className="text-lg font-semibold text-white group-hover:text-blue-200 transition-colors duration-300 animate-pulse">
+                <span dir="ltr" className="text-lg font-semibold text-white group-hover:text-blue-200 transition-colors duration-300 animate-pulse" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
                   ۰۹۱۸۲۳۰۸۲۹۰
                 </span>
               </div>
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
                   <EnvelopeIcon className="w-6 h-6 text-green-400 group-hover:text-green-300 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-pulse" />
                   <div className="absolute inset-0 bg-green-400/30 rounded-full blur-md scale-0 group-hover:scale-150 transition-transform duration-300"></div>
                 </div>
-                <a href="mailto:Taghvii.lawyer@gmail.com" className="text-lg font-semibold text-white hover:text-green-200 transition-all duration-300 group-hover:underline decoration-2 underline-offset-4">
+                <a href="mailto:Taghvii.lawyer@gmail.com" className="text-lg font-semibold text-white hover:text-green-200 transition-all duration-300 group-hover:underline decoration-2 underline-offset-4" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
                   Taghvii.lawyer@gmail.com
                 </a>
               </div>
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
                 <MapPinIcon className="w-6 h-6 text-red-400 group-hover:text-red-300 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-pulse" />
                 <div className="absolute inset-0 bg-red-400/30 rounded-full blur-md scale-0 group-hover:scale-150 transition-transform duration-300"></div>
               </div>
-              <span className="text-lg font-semibold text-white group-hover:text-red-200 transition-colors duration-300">
+              <span className="text-lg font-semibold text-white group-hover:text-red-200 transition-colors duration-300" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
                 همدان، برج آریان، طبقه ۱۲، واحد ۴
               </span>
             </div>
@@ -135,7 +135,7 @@ const Footer: React.FC = () => {
                         </svg>
                         <div className="absolute inset-0 bg-yellow-400/30 rounded-full blur-md animate-pulse"></div>
                       </div>
-                      <h3 className="text-3xl font-bold text-white font-nastaliq">
+                      <h3 className="text-3xl font-bold text-white font-nastaliq" style={{ fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif' }}>
                         ساعات کاری
                       </h3>
                     </div>

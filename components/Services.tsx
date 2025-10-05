@@ -46,8 +46,8 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
     <div className="mx-auto mb-6 flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-full">
       {service.icon}
     </div>
-    <h3 className="text-xl font-bold text-gray-800 mb-3">{service.title}</h3>
-    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+    <h3 className="text-xl font-bold text-gray-800 mb-3" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>{service.title}</h3>
+    <p className="text-gray-600 leading-relaxed" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>{service.description}</p>
   </div>
 );
 
@@ -56,8 +56,8 @@ const Services: React.FC = () => {
     <section id="services" className="py-12 sm:py-20 bg-gray-100">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">حوزه‌های تخصصی وکالت</h2>
-          <p className="mt-2 sm:mt-4 text-base sm:text-lg text-gray-600">ارائه خدمات حقوقی جامع و تخصصی برای احقاق حقوق شما</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>حوزه‌های تخصصی وکالت</h2>
+          <p className="mt-2 sm:mt-4 text-base sm:text-lg text-gray-600" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>ارائه خدمات حقوقی جامع و تخصصی برای احقاق حقوق شما</p>
           <div className="mt-3 sm:mt-4 w-16 sm:w-24 h-1 bg-blue-700 mx-auto rounded"></div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">

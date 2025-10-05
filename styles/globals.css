@@ -26,7 +26,7 @@ img {
   height: auto;
 }
 
-/* Optimize font rendering */
+/* Optimize font rendering - Local Font Declarations */
 @font-face {
   font-family: 'IranNastaliq';
   src: url('/Font/IranNastaliq.ttf') format('truetype');
@@ -38,6 +38,50 @@ img {
 @font-face {
   font-family: 'Iranian Sans';
   src: url('/Font/Iranian Sans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/Font/Shabnam-Thin.woff') format('woff'),
+       url('/Font/Shabnam-Medium.woff') format('woff'),
+       url('/Font/Shabnam-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/Font/Shabnam-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazir';
+  src: url('/Font/Vazirmatn[wght].woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Samim';
+  src: url('/Font/Samim-Medium.woff') format('woff'),
+       url('/Font/Samim-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nahid';
+  src: url('/Font/Nahid.woff') format('woff'),
+       url('/Font/Nahid.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

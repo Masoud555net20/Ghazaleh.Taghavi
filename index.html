@@ -11,26 +11,21 @@
     <title>غزاله تقوی | وکیل پایه یک دادگستری</title>
 
     <!-- DNS prefetch for external resources -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="//aistudiocdn.com">
 
     <!-- Preconnect to external origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
     <link rel="preload" href="/Font/IranNastaliq.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/Font/Iranian Sans.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/Font/Shabnam-Medium.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="/Font/Vazirmatn[wght].woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Load Tailwind CSS early -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Load Iranian fonts with display swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;600;700&family=Shabnam:wght@300;400;500;600;700&family=Samim:wght@300;400;500;600;700&family=Nahid:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;600;700&family=Shabnam:wght@300;400;500;600;700&family=Samim:wght@300;400;500;600;700&family=Nahid:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/styles/globals.css" as="style">
@@ -40,17 +35,41 @@
         background-color: black;
       }
       body {
-        font-family: 'Vazirmatn', sans-serif;
+        font-family: 'Shabnam', 'Vazir', 'Samim', 'Nahid', 'Iranian Sans', 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background-color: black;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       @font-face {
         font-family: 'IranNastaliq';
         src: url('/Font/IranNastaliq.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Iranian Sans';
+        src: url('/Font/Iranian Sans.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Shabnam';
+        src: url('/Font/Shabnam-Medium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Vazir';
+        src: url('/Font/Vazirmatn[wght].woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
       }
       .font-nastaliq {
-        font-family: 'IranNastaliq', cursive;
+        font-family: 'IranNastaliq', 'Vazirmatn', serif;
       }
     </style>
   <script type="importmap">
