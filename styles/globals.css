@@ -27,12 +27,41 @@ img {
 }
 
 /* Optimize font rendering */
+@font-face {
+  font-family: 'IranNastaliq';
+  src: url('/Font/IranNastaliq.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-display: swap;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Persian text styling */
+.nastaliq {
+  font-family: 'IranNastaliq', 'Vazirmatn', serif;
+  direction: rtl;
+  text-align: right;
+}
+
+.persian-title {
+  font-family: 'IranNastaliq', 'Vazirmatn', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  direction: rtl;
+}
+
+.persian-text {
+  font-family: 'IranNastaliq', 'Vazirmatn', serif;
+  direction: rtl;
+  text-align: right;
+  line-height: 2;
 }
 
 /* GPU acceleration for animations */
