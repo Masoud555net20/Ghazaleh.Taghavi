@@ -66,8 +66,8 @@ const Header: React.FC = () => {
 
           {/* CTA Button - Properly sized for all devices */}
           <div className="flex items-center flex-shrink-0 ml-3">
-            <a href={isHonorsPage ? '/#booking' : '#booking'} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 text-sm xl:text-base shadow-xl hover:shadow-2xl whitespace-nowrap" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
-              رزرو وقت مشاوره
+            <a href={isHonorsPage ? '/#contact' : '#contact'} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 text-sm xl:text-base shadow-xl hover:shadow-2xl whitespace-nowrap" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
+              پل ارتباطی با ما
             </a>
           </div>
           <button
@@ -86,10 +86,11 @@ const Header: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-gray-800 hover:text-blue-700 font-bold transition-all duration-300 text-xl py-5 px-6 rounded-2xl hover:bg-blue-50 hover:shadow-lg border border-gray-200"
+                  className="hover:text-blue-800 font-bold transition-all duration-300 text-lg py-4 px-6 rounded-xl hover:bg-blue-50 hover:shadow-lg border border-gray-200"
                   style={{
                     animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
-                    fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif'
+                    fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif',
+                    color: '#1e40af' // Dark blue color for all menu items
                   }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -99,7 +100,7 @@ const Header: React.FC = () => {
               <div className="pt-4 border-t border-gray-200 mt-4">
                 <a
                   href={isHonorsPage ? '/#booking' : '#booking'}
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-5 px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center text-lg shadow-lg hover:shadow-xl transform hover:scale-105 block w-full"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-6 px-10 rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center text-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 block w-full"
                   style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -332,23 +333,25 @@ const Header: React.FC = () => {
 
           /* Mobile menu links */
           .lg\\:hidden nav {
-            padding: 0.4rem 0.6rem !important;
+            padding: 0.6rem 0.8rem !important;
           }
 
           .lg\\:hidden a {
-            padding: 0.3rem 0.5rem !important;
-            border-radius: 3px !important;
-            margin-bottom: 0.15rem !important;
-            font-size: 0.8rem !important;
-            font-weight: 500 !important;
-            transition: all 0.15s ease !important;
-            border-left: 2px solid transparent !important;
+            padding: 0.8rem 1rem !important;
+            border-radius: 8px !important;
+            margin-bottom: 0.3rem !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            transition: all 0.2s ease !important;
+            border-left: 3px solid transparent !important;
+            color: #1e40af !important; /* Dark blue color for menu text */
           }
 
           .lg\\:hidden a:hover {
-            background: rgba(59, 130, 246, 0.05) !important;
+            background: rgba(59, 130, 246, 0.1) !important;
             border-left-color: #3b82f6 !important;
-            transform: translateX(1px) !important;
+            transform: translateX(2px) !important;
+            color: #1d4ed8 !important; /* Darker blue on hover */
           }
 
           /* Mobile CTA button */

@@ -453,7 +453,7 @@ const Hero: React.FC = () => {
             justify-content: flex-start !important; /* Content at top */
           }
           .hero-title {
-            font-size: 4.5rem !important; /* Much larger for mobile impact and beauty */
+            font-size: 5.5rem !important; /* Even larger for mobile impact and beauty */
             margin-bottom: 1.5rem !important;
             animation-duration: 3s !important;
             -webkit-text-stroke: 1px transparent !important;
