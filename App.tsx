@@ -12,6 +12,7 @@ import { ThemeProvider, useTheme } from './components/ThemeProvider';
 import ThemeSelector from './components/ThemeSelector';
 import ImagePreloader from './components/ImagePreloader';
 import FontOptimizer from './components/FontOptimizer';
+import { AccessibilityProvider } from './components/AccessibilityProvider';
 
 const LazyLegalAssistant = lazy(() => import('./components/LegalAssistant'));
 const LazyFAQ = lazy(() => import('./components/FAQ'));
@@ -35,12 +36,12 @@ const MainPage: React.FC = () => {
       style={defaultStyles}
     >
       <Header />
-      <main>
+      <main id="main-content" role="main">
         <Hero />
         <Services />
         <About />
         <Process />
-        <Suspense fallback={<div className="py-20 text-center">در حال بارگذاری...</div>}>
+        <Suspense fallback={<div className="py-20 text-center" role="status" aria-live="polite">در حال بارگذاری...</div>}>
           <LazyLegalAssistant />
           <LazyFAQ />
           <LazyBooking />
@@ -75,16 +76,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <ThemeProvider>
-      <FontOptimizer onFontsLoaded={handleFontsLoaded} />
-      <ImagePreloader images={criticalImages} onComplete={handleImagesPreloaded} />
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/honors" element={<HonorsPage />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <AccessibilityProvider>
+      <ThemeProvider>
+        <FontOptimizer onFontsLoaded={handleFontsLoaded} />
+        <ImagePreloader images={criticalImages} onComplete={handleImagesPreloaded} />
+        <Router>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/honors" element={<HonorsPage />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </AccessibilityProvider>
   );
 };
 

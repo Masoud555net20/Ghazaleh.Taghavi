@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LazyImage from './LazyImage';
+import { FadeInOnScroll, ParallaxElement, ParticleField, MorphingShape } from './AdvancedAnimations';
 
 const images = [
   '/1.png',
@@ -12,11 +13,14 @@ const images = [
 const Hero: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    setIsVisible(true);
+
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000); // Increased interval for better performance
+    }, 5000); // Slower transitions for better experience
 
     return () => clearInterval(intervalId);
   }, []);
@@ -51,70 +55,101 @@ const Hero: React.FC = () => {
           />
         );
       })}
-      
-      {/* Overlay: Subtle overlay for better text readability */}
-      <div className="absolute inset-0 bg-gray-900 bg-opacity-40" style={{ zIndex: 2 }}></div>
 
-      {/* Content - Positioned higher for mobile */}
+      {/* Enhanced Overlay - Simplified for better performance */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/50 via-blue-900/30 to-purple-900/50" style={{ zIndex: 2 }}></div>
+
+      {/* Optimized Particles Background - Reduced count for mobile */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 2 }}>
+        <ParticleField count={8} className="opacity-20" />
+      </div>
+
+      {/* Simplified Floating Elements - Only for desktop */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block" style={{ zIndex: 2 }}>
+        <div className="absolute top-20 left-10 w-16 h-16 bg-blue-400/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-12 h-12 bg-purple-400/10 rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-32 left-20 w-20 h-20 bg-pink-400/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+
+      {/* Main Content */}
       <div className="relative z-10 p-4 sm:p-6 max-w-6xl mx-auto w-full flex flex-col items-center justify-center mobile-top-content" style={{ zIndex: 3 }}>
-        <h1 className="hero-title leading-none mb-4 animate-fade-in-down nastaliq-title" style={{
-          color: '#FFD700',
-          animation: 'golden-glow 1.5s ease-in-out infinite, titleFloat 2s ease-in-out infinite',
-          textShadow: '0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 90px rgba(255, 255, 255, 0.3)',
-          filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
-          fontFeatureSettings: 'liga on, calt on',
-          fontKerning: 'auto',
-          textRendering: 'optimizeLegibility',
-          WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale',
-          letterSpacing: '0px',
-          wordSpacing: '0px',
-          lineHeight: '1.3',
-          direction: 'rtl',
-          unicodeBidi: 'embed',
-          fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif'
-        }}>
-          غزاله تقوی
-        </h1>
-        <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-light mb-6 animate-fade-in-up iranian-sans" style={{
-          color: '#FFFFFF',
-          animation: 'subtitleShimmer 2s ease-in-out infinite, subtitleFloat 2s ease-in-out infinite',
-          textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.7), 0 0 60px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 255, 255, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.8)',
-          filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6))',
-          fontFeatureSettings: 'liga on, calt on',
-          fontKerning: 'auto',
-          textRendering: 'optimizeLegibility',
-          WebkitFontSmoothing: 'antialiased',
-          MozOsxFontSmoothing: 'grayscale',
-          letterSpacing: '1px',
-          lineHeight: '1.8',
-          direction: 'rtl',
-          unicodeBidi: 'embed',
-          fontWeight: '500',
-          fontFamily: 'Shabnam, Vazir, Samim, Nahid, Iranian Sans, Vazirmatn, sans-serif'
-        }}>
-          وکیل پایه یک دادگستری و میانجیگر رسمی قوه قضائیه
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up animation-delay-300">
-          <a href="#booking" className="luxury-button primary-button font-semibold py-5 px-10 sm:py-4 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-base sm:text-lg relative overflow-hidden group iranian-sans">
-            <span className="relative z-10 text-white font-bold tracking-wide">رزرو وقت مشاوره</span>
-            <div className="absolute inset-0 bg-blue-800 opacity-90 group-hover:opacity-100 transition-all duration-300"></div>
-            <div className="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-50 transition-all duration-300"></div>
-            <div className="absolute inset-0 border-2 border-blue-600/50 rounded-2xl group-hover:border-blue-400/80 transition-all duration-300"></div>
-          </a>
-          <a href="#services" className="luxury-button glass-button font-semibold py-5 px-10 sm:py-4 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-base sm:text-lg relative overflow-hidden group iranian-sans">
-            <span className="relative z-10 text-white font-bold tracking-wide">آشنایی با خدمات</span>
-            <div className="absolute inset-0 bg-blue-600/90 backdrop-blur-md group-hover:backdrop-blur-lg transition-all duration-300"></div>
-            <div className="absolute inset-0 border-2 border-blue-500/60 rounded-2xl group-hover:border-blue-300/80 transition-all duration-300"></div>
-            <div className="absolute inset-0 bg-blue-500/50 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-          </a>
-          <a href="#contact" className="luxury-button secondary-button font-semibold py-5 px-10 sm:py-4 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-base sm:text-lg relative overflow-hidden group iranian-sans">
-            <span className="relative z-10 text-white font-bold tracking-wide">ارتباط با ما</span>
-            <div className="absolute inset-0 bg-blue-900 opacity-90 group-hover:opacity-100 transition-all duration-300"></div>
-            <div className="absolute inset-0 bg-blue-800 opacity-0 group-hover:opacity-40 transition-all duration-300"></div>
-            <div className="absolute inset-0 border-2 border-blue-700/50 rounded-2xl group-hover:border-blue-500/80 transition-all duration-300"></div>
-          </a>
+        {/* Optimized Main Title */}
+        <div className="relative mb-6">
+          <FadeInOnScroll delay={200}>
+            <h1 className="hero-title leading-none mb-4 animate-fade-in-down nastaliq-title" style={{
+              color: '#FFD700',
+              animation: 'golden-glow 2s ease-in-out infinite, titleFloat 3s ease-in-out infinite',
+              textShadow: '0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 255, 255, 0.3)',
+              filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+              fontFeatureSettings: 'liga on, calt on',
+              fontKerning: 'auto',
+              textRendering: 'optimizeLegibility',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+              letterSpacing: '0px',
+              wordSpacing: '0px',
+              lineHeight: '1.3',
+              direction: 'rtl',
+              unicodeBidi: 'embed',
+              fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif'
+            }}>
+              غزاله تقوی
+            </h1>
+          </FadeInOnScroll>
+
+          {/* Simplified Decorative Elements - Only for desktop */}
+          <div className="absolute -top-4 -right-4 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse opacity-60 hidden md:block"></div>
+          <div className="absolute -top-4 -left-4 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse opacity-50 hidden md:block" style={{ animationDelay: '1s' }}></div>
         </div>
+
+        {/* Optimized Subtitle */}
+        <FadeInOnScroll delay={400}>
+          <div className="relative mb-8">
+            <p className="hero-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium mb-6 animate-fade-in-up iranian-sans" style={{
+              color: '#FFFFFF',
+              animation: 'subtitleShimmer 3s ease-in-out infinite',
+              textShadow: '0 0 15px rgba(255, 255, 255, 0.7), 0 0 25px rgba(255, 255, 255, 0.4), 2px 2px 4px rgba(0, 0, 0, 0.6)',
+              filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))',
+              fontFeatureSettings: 'liga on, calt on',
+              fontKerning: 'auto',
+              textRendering: 'optimizeLegibility',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+              letterSpacing: '1px',
+              lineHeight: '1.8',
+              direction: 'rtl',
+              unicodeBidi: 'embed',
+              fontWeight: '500',
+              fontFamily: 'Shabnam, Vazir, Samim, Nahid, Iranian Sans, Vazirmatn, sans-serif'
+            }}>
+              وکیل پایه یک دادگستری و میانجیگر رسمی قوه قضائیه
+            </p>
+          </div>
+        </FadeInOnScroll>
+
+        {/* Enhanced Action Buttons */}
+        <FadeInOnScroll delay={900}>
+          <div className="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up animation-delay-300 w-full max-w-2xl">
+            <a href="#booking" className="luxury-button primary-button font-semibold py-5 px-10 sm:py-4 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-base sm:text-lg relative overflow-hidden group iranian-sans">
+              <span className="relative z-10 text-white font-bold tracking-wide">رزرو وقت مشاوره</span>
+              <div className="absolute inset-0 bg-blue-800 opacity-90 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-50 transition-all duration-300"></div>
+              <div className="absolute inset-0 border-2 border-blue-600/50 rounded-2xl group-hover:border-blue-400/80 transition-all duration-300"></div>
+            </a>
+            <a href="#services" className="luxury-button glass-button font-semibold py-5 px-10 sm:py-4 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-base sm:text-lg relative overflow-hidden group iranian-sans">
+              <span className="relative z-10 text-white font-bold tracking-wide">آشنایی با خدمات</span>
+              <div className="absolute inset-0 bg-blue-600/90 backdrop-blur-md group-hover:backdrop-blur-lg transition-all duration-300"></div>
+              <div className="absolute inset-0 border-2 border-blue-500/60 rounded-2xl group-hover:border-blue-300/80 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-blue-500/50 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+            </a>
+            <a href="#contact" className="luxury-button secondary-button font-semibold py-5 px-10 sm:py-4 sm:px-8 rounded-2xl hover:scale-105 shadow-2xl w-full sm:w-auto text-center text-base sm:text-lg relative overflow-hidden group iranian-sans">
+              <span className="relative z-10 text-white font-bold tracking-wide">ارتباط با ما</span>
+              <div className="absolute inset-0 bg-blue-900 opacity-90 group-hover:opacity-100 transition-all duration-300"></div>
+              <div className="absolute inset-0 bg-blue-800 opacity-0 group-hover:opacity-40 transition-all duration-300"></div>
+              <div className="absolute inset-0 border-2 border-blue-700/50 rounded-2xl group-hover:border-blue-500/80 transition-all duration-300"></div>
+            </a>
+          </div>
+        </FadeInOnScroll>
       </div>
       
       <style>{`

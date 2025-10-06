@@ -21,55 +21,114 @@ const TelegramIcon = () => (
 
 const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="relative bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 text-white py-12 px-6 overflow-hidden">
+    <footer id="contact" className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-white py-16 px-6 overflow-hidden">
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 animate-gradient-x"></div>
+        {/* Primary gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950"></div>
+
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-950/50 via-transparent to-purple-950/50 animate-gradient-slow"></div>
+
+        {/* Floating orbs */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl animate-float-slow"></div>
+        <div className="absolute bottom-32 right-16 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl animate-float-medium"></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-indigo-500/10 rounded-full blur-xl animate-float-fast"></div>
+
+        {/* Geometric patterns */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 right-10 w-64 h-64 border border-blue-400/20 rotate-45 animate-spin-slow"></div>
+          <div className="absolute bottom-20 left-20 w-48 h-48 border border-purple-400/20 -rotate-12 animate-spin-reverse-slow"></div>
+        </div>
+
+        {/* Particle effect overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-blue-900/20"></div>
       </div>
-      <div className="relative max-w-4xl mx-auto text-center space-y-8 z-10">
-        {/* Main Title */}
-        <div className="space-y-2">
-          <h2 className="text-6xl md:text-8xl font-extrabold font-nastaliq text-white drop-shadow-2xl" style={{ fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif' }}>
+
+      <div className="relative max-w-6xl mx-auto text-center space-y-12 z-10">
+        {/* Enhanced Main Title */}
+        <div className="space-y-4 relative">
+          {/* Decorative elements around title */}
+          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-60"></div>
+
+          <h2 className="text-6xl md:text-8xl font-extrabold font-nastaliq text-white drop-shadow-2xl animate-title-glow relative" style={{ fontFamily: 'IranNastaliq, Shabnam, Vazir, Samim, Nahid, serif' }}>
             غزاله تقوی
           </h2>
-          <p className="text-lg md:text-xl text-gray-200 font-light" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
-            وکیل پایه یک دادگستری
+
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent to-blue-400"></div>
+            <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+            <div className="w-16 h-px bg-gradient-to-l from-transparent to-blue-400"></div>
+          </div>
+
+          <p className="text-xl md:text-2xl text-gray-200 font-light bg-gradient-to-r from-gray-200 to-gray-300 bg-clip-text text-transparent" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
+            وکیل پایه یک دادگستری و میانجیگر رسمی
           </p>
+
+          {/* Subtitle decoration */}
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-40"></div>
         </div>
 
         {/* Social and Contact Links */}
         <div className="space-y-6">
-          {/* Social Links */}
-          <div className="flex flex-wrap justify-center gap-6 mb-6">
-            <a
-              href="https://wa.me/989182308290"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg hover:shadow-xl hover:shadow-green-500/30 animate-pulse"
-              aria-label="WhatsApp"
-            >
-              <WhatsAppIcon className="group-hover:animate-bounce" />
-              <div className="absolute inset-0 rounded-full bg-green-500/20 scale-0 group-hover:scale-100 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-            </a>
-            <a
-              href="https://www.threads.com/@taghavi_ghazaleh?xmt=AQF0fSI7VOfXewTjN584IqRXNl8CqQTiCvGRdwPzIOZX8tA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg hover:shadow-xl hover:shadow-pink-500/30 animate-pulse"
-              aria-label="Instagram"
-            >
-              <InstagramIcon className="group-hover:animate-bounce" />
-              <div className="absolute inset-0 rounded-full bg-pink-500/20 scale-0 group-hover:scale-100 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-            </a>
-            <a
-              href="https://t.me/ghazalehtaghavi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg hover:shadow-xl hover:shadow-blue-500/30 animate-pulse"
-              aria-label="Telegram"
-            >
-              <TelegramIcon className="group-hover:animate-bounce" />
-              <div className="absolute inset-0 rounded-full bg-blue-500/20 scale-0 group-hover:scale-100 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-            </a>
+          {/* Enhanced Social Links */}
+          <div className="relative">
+            {/* Social links container with floating effect */}
+            <div className="flex flex-wrap justify-center gap-8 mb-8 p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl">
+              <a
+                href="https://wa.me/989182308290"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 rounded-2xl bg-gradient-to-br from-green-600/20 to-green-800/20 backdrop-blur-sm border border-green-400/30 hover:border-green-300/60 transition-all duration-500 hover:scale-125 hover:-translate-y-3 shadow-xl hover:shadow-green-500/50 animate-float-social"
+                aria-label="تماس با واتساپ"
+              >
+                <WhatsAppIcon />
+                {/* Enhanced hover effects */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-green-400/10 to-green-600/10 scale-0 group-hover:scale-100 transition-transform duration-500 opacity-0 group-hover:opacity-100"></div>
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-400 to-green-600 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-500"></div>
+
+                {/* Floating particles */}
+                <div className="absolute -top-2 -right-2 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-0 group-hover:opacity-100"></div>
+                <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-green-300 rounded-full animate-pulse opacity-0 group-hover:opacity-100" style={{ animationDelay: '0.5s' }}></div>
+              </a>
+
+              <a
+                href="https://www.threads.com/@taghavi_ghazaleh?xmt=AQF0fSI7VOfXewTjN584IqRXNl8CqQTiCvGRdwPzIOZX8tA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 rounded-2xl bg-gradient-to-br from-pink-600/20 to-purple-800/20 backdrop-blur-sm border border-pink-400/30 hover:border-pink-300/60 transition-all duration-500 hover:scale-125 hover:-translate-y-3 shadow-xl hover:shadow-pink-500/50 animate-float-social"
+                style={{ animationDelay: '0.2s' }}
+                aria-label="صفحه اینستاگرام"
+              >
+                <InstagramIcon />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-400/10 to-purple-600/10 scale-0 group-hover:scale-100 transition-transform duration-500 opacity-0 group-hover:opacity-100"></div>
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-pink-400 to-purple-600 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-500"></div>
+
+                {/* Floating particles */}
+                <div className="absolute -top-2 -right-2 w-3 h-3 bg-pink-400 rounded-full animate-ping opacity-0 group-hover:opacity-100"></div>
+                <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-purple-300 rounded-full animate-pulse opacity-0 group-hover:opacity-100" style={{ animationDelay: '0.7s' }}></div>
+              </a>
+
+              <a
+                href="https://t.me/ghazalehtaghavi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 rounded-2xl bg-gradient-to-br from-blue-600/20 to-indigo-800/20 backdrop-blur-sm border border-blue-400/30 hover:border-blue-300/60 transition-all duration-500 hover:scale-125 hover:-translate-y-3 shadow-xl hover:shadow-blue-500/50 animate-float-social"
+                style={{ animationDelay: '0.4s' }}
+                aria-label="کانال تلگرام"
+              >
+                <TelegramIcon />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/10 to-indigo-600/10 scale-0 group-hover:scale-100 transition-transform duration-500 opacity-0 group-hover:opacity-100"></div>
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-blue-400 to-indigo-600 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-500"></div>
+
+                {/* Floating particles */}
+                <div className="absolute -top-2 -right-2 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-0 group-hover:opacity-100"></div>
+                <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-indigo-300 rounded-full animate-pulse opacity-0 group-hover:opacity-100" style={{ animationDelay: '0.3s' }}></div>
+              </a>
+            </div>
+
+            {/* Decorative line under social links */}
+            <div className="w-32 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto"></div>
           </div>
 
           {/* Contact Info */}
@@ -197,6 +256,149 @@ const Footer: React.FC = () => {
         .animate-gradient-y {
           background-size: 200% 200%;
           animation: gradient-y 8s ease infinite;
+        }
+
+        /* Enhanced Footer Animations */
+        @keyframes title-glow {
+          0%, 100% {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(59, 130, 246, 0.3), 0 0 60px rgba(147, 51, 234, 0.2);
+          }
+          50% {
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(59, 130, 246, 0.5), 0 0 90px rgba(147, 51, 234, 0.3);
+          }
+        }
+        .animate-title-glow {
+          animation: title-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes float-social {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-8px) rotate(1deg); }
+          66% { transform: translateY(-4px) rotate(-1deg); }
+        }
+        .animate-float-social {
+          animation: float-social 6s ease-in-out infinite;
+        }
+
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          50% { transform: translateY(-20px) translateX(10px); }
+        }
+        .animate-float-slow {
+          animation: float-slow 8s ease-in-out infinite;
+        }
+
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          50% { transform: translateY(-15px) translateX(-8px); }
+        }
+        .animate-float-medium {
+          animation: float-medium 6s ease-in-out infinite;
+        }
+
+        @keyframes float-fast {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          50% { transform: translateY(-12px) translateX(12px); }
+        }
+        .animate-float-fast {
+          animation: float-fast 4s ease-in-out infinite;
+        }
+
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+
+        @keyframes spin-reverse-slow {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        .animate-spin-reverse-slow {
+          animation: spin-reverse-slow 25s linear infinite;
+        }
+
+        @keyframes gradient-slow {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-slow {
+          background-size: 200% 200%;
+          animation: gradient-slow 12s ease infinite;
+        }
+
+        /* Pulse glow effect for icons */
+        @keyframes icon-glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 40px rgba(147, 51, 234, 0.3);
+          }
+        }
+        .animate-icon-glow {
+          animation: icon-glow 2s ease-in-out infinite;
+        }
+
+        /* Enhanced hover effects */
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .animate-shimmer::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+          animation: shimmer 2s infinite;
+        }
+
+        /* Particle animation */
+        @keyframes particle-float {
+          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 1; }
+          50% { transform: translateY(-10px) translateX(5px); opacity: 0.7; }
+        }
+        .animate-particle-float {
+          animation: particle-float 3s ease-in-out infinite;
+        }
+
+        /* Responsive enhancements */
+        @media (max-width: 640px) {
+          .animate-float-social {
+            animation-duration: 4s;
+          }
+
+          .animate-float-slow {
+            animation-duration: 6s;
+          }
+
+          .animate-float-medium {
+            animation-duration: 4s;
+          }
+
+          .animate-float-fast {
+            animation-duration: 3s;
+          }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .animate-float-social,
+          .animate-float-slow,
+          .animate-float-medium,
+          .animate-float-fast,
+          .animate-spin-slow,
+          .animate-spin-reverse-slow,
+          .animate-gradient-slow,
+          .animate-title-glow,
+          .animate-icon-glow {
+            animation: none !important;
+          }
         }
       `}</style>
     </footer>

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAccessibility } from './AccessibilityProvider';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { announceToScreenReader } = useAccessibility();
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMenuItemRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +17,36 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Focus management for mobile menu
+  useEffect(() => {
+    if (isMobileMenuOpen && firstMenuItemRef.current) {
+      firstMenuItemRef.current.focus();
+    }
+  }, [isMobileMenuOpen]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
+        announceToScreenReader('منو بسته شد');
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen, announceToScreenReader]);
 
   // اگر در صفحه گالری افتخارات هستیم، لینک‌های anchor باید به صفحه اصلی اشاره کنن
   const isHonorsPage = location.pathname === '/honors';
@@ -31,22 +65,38 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-xl border-b border-black/10' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 py-4 max-w-7xl">
+    <header
+      className={`sticky -top-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-xl border-b border-black/10' : 'bg-transparent'}`}
+      role="banner"
+      aria-label="هدر اصلی وبسایت"
+    >
+      <div className="container mx-auto px-4 py-2 max-w-7xl">
         <div className="flex items-center justify-between gap-3">
-          {/* Logo Section - Even Larger for mobile */}
+          {/* Logo Section - Optimized for mobile */}
           <div className="flex items-center flex-shrink-0">
-            <div className="w-24 sm:w-28 lg:w-18 xl:w-20 h-auto">
-              <a href={isHonorsPage ? '/' : '#'} className="transition-all duration-300 hover:scale-110 block">
+            <div className="w-28 sm:w-32 md:w-36 lg:w-28 xl:w-32 h-auto">
+              <a
+                href={isHonorsPage ? '/' : '#'}
+                className="transition-all duration-300 hover:scale-110 block focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-full"
+                aria-label="غزاله تقوی - صفحه اصلی"
+              >
                 <div className="relative">
-                  <img src="/5.png" alt="غزاله تقوی" className="w-24 sm:w-28 lg:w-18 xl:w-20 h-auto animated-logo max-w-full rounded-full shadow-xl ring-2 ring-white/30" />
+                  <img
+                    src="/5.png"
+                    alt="لوگوی غزاله تقوی - وکیل پایه یک دادگستری"
+                    className="w-28 sm:w-32 md:w-36 lg:w-28 xl:w-32 h-auto animated-logo max-w-full rounded-full shadow-xl ring-2 ring-white/30"
+                  />
                 </div>
               </a>
             </div>
           </div>
 
           {/* Navigation Menu - Centered and properly sized */}
-          <nav className="hidden lg:flex items-center flex-1 justify-center">
+          <nav
+            className="hidden lg:flex items-center flex-1 justify-center"
+            role="navigation"
+            aria-label="منوی اصلی ناوبری"
+          >
             <div className={`flex items-center gap-1 xl:gap-2 text-sm xl:text-base ${isScrolled ? 'bg-gray-50/80' : 'bg-white/10'} rounded-xl px-4 py-3 shadow-sm`} style={{backdropFilter: isScrolled ? 'none' : 'blur(10px)'}}>
               {navLinks.map((link, index) => (
                 <a
@@ -57,6 +107,7 @@ const Header: React.FC = () => {
                     animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
                     fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif'
                   }}
+                  aria-label={`بخش ${link.name}`}
                 >
                   {link.name}
                 </a>
@@ -66,45 +117,112 @@ const Header: React.FC = () => {
 
           {/* CTA Button - Properly sized for all devices */}
           <div className="flex items-center flex-shrink-0 ml-3">
-            <a href={isHonorsPage ? '/#contact' : '#contact'} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 text-sm xl:text-base shadow-xl hover:shadow-2xl whitespace-nowrap" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
+            <a
+              href={isHonorsPage ? '/#contact' : '#contact'}
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 sm:px-8 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 text-sm xl:text-base shadow-xl hover:shadow-2xl whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+              style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}
+              aria-label="تماس با ما و اطلاعات ارتباطی"
+            >
               پل ارتباطی با ما
             </a>
           </div>
           <button
-            className={`lg:hidden p-3 rounded-xl transition-all duration-300 ${isScrolled ? 'text-gray-800 bg-gray-100 hover:bg-gray-200 shadow-md' : 'text-white bg-white/10 hover:bg-white/20 shadow-lg'} backdrop-blur-sm`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            ref={mobileMenuButtonRef}
+            className={`lg:hidden p-3 rounded-xl transition-all duration-300 ${isScrolled ? 'text-gray-800 bg-gray-100 hover:bg-gray-200 shadow-md' : 'text-white bg-white/10 hover:bg-white/20 shadow-lg'} backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`}
+            onClick={() => {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+              announceToScreenReader(isMobileMenuOpen ? 'منو بسته شد' : 'منو باز شد');
+            }}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMobileMenuOpen ? 'بستن منوی موبایل' : 'باز کردن منوی موبایل'}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
             </svg>
           </button>
         </div>
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-200 shadow-xl">
-            <nav className="flex flex-col space-y-2 py-8 px-6">
-            {navLinks.map((link, index) => (
+          <div
+            className="lg:hidden relative bg-gradient-to-br from-slate-50 via-white to-blue-50 backdrop-blur-xl border-t border-blue-200/50 shadow-2xl animate-mobile-menu-slide"
+            id="mobile-navigation"
+            role="navigation"
+            aria-label="منوی ناوبری موبایل"
+          >
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-indigo-500/5 rounded-t-3xl"></div>
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
+
+            <nav className="relative flex flex-col py-6 px-4" role="menu">
+              {/* Menu Items with Enhanced Styling - Ultra Compact Mobile Version */}
+              {navLinks.map((link, index) => (
                 <a
                   key={link.name}
+                  ref={index === 0 ? firstMenuItemRef : null}
                   href={link.href}
-                  className="hover:text-blue-800 font-bold transition-all duration-300 text-lg py-4 px-6 rounded-xl hover:bg-blue-50 hover:shadow-lg border border-gray-200"
+                  className="group relative font-bold transition-all duration-500 text-sm py-1.5 px-2 my-0.5 rounded-md hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:shadow-md border border-transparent hover:border-blue-200/50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 animate-mobile-menu-item"
                   style={{
-                    animation: `wave-motion 1s ease-in-out infinite ${index * 0.1}s`,
+                    animationDelay: `${index * 0.1}s`,
                     fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif',
-                    color: '#1e40af' // Dark blue color for all menu items
+                    background: `linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05))`,
+                    transform: `translateY(${index * 2}px)`,
                   }}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    announceToScreenReader(`بخش ${link.name} انتخاب شد`);
+                  }}
+                  role="menuitem"
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                  aria-label={`بخش ${link.name}`}
                 >
-                  {link.name}
+                  <span className="relative z-10 text-gray-700 group-hover:text-blue-700 transition-colors duration-300 flex items-center gap-1.5">
+                    {/* Icon placeholder for each menu item */}
+                    <span className="w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    {link.name}
+                  </span>
+
+                  {/* Hover background effect */}
+                  <div className="absolute inset-0 rounded-md bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Animated border */}
+                  <div className="absolute inset-0 rounded-md border-2 border-transparent group-hover:border-blue-300/50 transition-all duration-500"></div>
+
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 rounded-md bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 transform -skew-x-12 group-hover:translate-x-full"></div>
                 </a>
               ))}
-              <div className="pt-4 border-t border-gray-200 mt-4">
+
+              {/* Enhanced CTA Button - Ultra Compact Mobile Version */}
+              <div className="pt-3 mt-1 relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-indigo-600/20 rounded-lg blur-md animate-pulse"></div>
                 <a
                   href={isHonorsPage ? '/#booking' : '#booking'}
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-6 px-10 rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center text-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 block w-full"
+                  className="group relative block w-full bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white font-bold py-2.5 px-3 rounded-lg text-center text-sm shadow-md hover:shadow-blue-500/50 transform hover:scale-105 transition-all duration-500 overflow-hidden"
                   style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    announceToScreenReader('رزرو وقت مشاوره انتخاب شد');
+                  }}
+                  role="menuitem"
+                  tabIndex={isMobileMenuOpen ? 0 : -1}
+                  aria-label="رزرو وقت مشاوره"
                 >
-                  رزرو وقت مشاوره
+                  {/* Button content */}
+                  <span className="relative z-10 flex items-center justify-center gap-1.5">
+                    <span className="text-base">📅</span>
+                    رزرو وقت مشاوره
+                    <span className="text-xs opacity-80">→</span>
+                  </span>
+
+                  {/* Animated background layers */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-purple-800 scale-0 group-hover:scale-100 transition-transform duration-700 rounded-lg"></div>
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 transform -translate-x-full group-hover:translate-x-full"></div>
+
+                  {/* Border animation */}
+                  <div className="absolute inset-0 rounded-lg border-2 border-blue-300/50 group-hover:border-white/80 transition-all duration-500"></div>
                 </a>
               </div>
             </nav>
@@ -190,6 +308,77 @@ const Header: React.FC = () => {
         }
         .animate-multi-color-border {
           animation: multi-color-border 2s ease-in-out infinite;
+        }
+
+        /* Enhanced Mobile Menu Animations */
+        @keyframes mobile-menu-slide {
+          0% {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.95);
+            filter: blur(4px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+          }
+        }
+        .animate-mobile-menu-slide {
+          animation: mobile-menu-slide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes mobile-menu-item {
+          0% {
+            opacity: 0;
+            transform: translateX(-20px) translateY(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0) translateY(0);
+          }
+        }
+        .animate-mobile-menu-item {
+          animation: mobile-menu-item 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Staggered animation delays for menu items */
+        .animate-mobile-menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .animate-mobile-menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .animate-mobile-menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .animate-mobile-menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .animate-mobile-menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .animate-mobile-menu-item:nth-child(6) { animation-delay: 0.6s; }
+        .animate-mobile-menu-item:nth-child(7) { animation-delay: 0.7s; }
+        .animate-mobile-menu-item:nth-child(8) { animation-delay: 0.8s; }
+        .animate-mobile-menu-item:nth-child(9) { animation-delay: 0.9s; }
+        .animate-mobile-menu-item:nth-child(10) { animation-delay: 1.0s; }
+
+        /* Enhanced mobile menu button animation */
+        @keyframes mobile-button-pulse {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+          }
+        }
+        .animate-mobile-button-pulse {
+          animation: mobile-button-pulse 2s infinite;
+        }
+
+        /* Mobile menu backdrop blur animation */
+        @keyframes backdrop-appear {
+          0% {
+            backdrop-filter: blur(0px);
+            background: rgba(255, 255, 255, 0);
+          }
+          100% {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+          }
+        }
+        .animate-backdrop-appear {
+          animation: backdrop-appear 0.3s ease-out forwards;
         }
 
         /* Header Title Animation */
@@ -304,9 +493,14 @@ const Header: React.FC = () => {
         @media (max-width: 640px) {
           /* Mobile-first logo optimization */
           .animated-logo {
-            width: 75px !important; /* Smaller for mobile */
+            width: 112px !important; /* Larger mobile logo size */
             animation: logo-move 12s ease-in-out infinite, logo-hue 15s linear infinite, logo-glow 15s ease-in-out infinite !important;
             box-shadow: 0 1px 4px rgba(59,130,246,0.1) !important;
+          }
+
+          /* Mobile header optimization */
+          .container.mx-auto.px-4.py-4 {
+            padding: 0.75rem 1rem !important;
           }
 
           /* Mobile navigation improvements */
@@ -317,8 +511,8 @@ const Header: React.FC = () => {
 
           /* Mobile menu button positioning */
           button.lg\\:hidden {
-            padding: 3px !important;
-            border-radius: 3px !important;
+            padding: 8px !important;
+            border-radius: 8px !important;
             background: rgba(59, 130, 246, 0.05) !important;
             border: 1px solid rgba(59, 130, 246, 0.1) !important;
           }
@@ -331,19 +525,19 @@ const Header: React.FC = () => {
             box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05) !important;
           }
 
-          /* Mobile menu links */
+          /* Mobile menu links - ultra compact */
           .lg\\:hidden nav {
-            padding: 0.6rem 0.8rem !important;
+            padding: 0.75rem !important;
           }
 
           .lg\\:hidden a {
-            padding: 0.8rem 1rem !important;
-            border-radius: 8px !important;
-            margin-bottom: 0.3rem !important;
-            font-size: 1.1rem !important;
+            padding: 0.5rem 0.75rem !important;
+            border-radius: 6px !important;
+            margin-bottom: 0.25rem !important;
+            font-size: 0.875rem !important;
             font-weight: 600 !important;
             transition: all 0.2s ease !important;
-            border-left: 3px solid transparent !important;
+            border-left: 2px solid transparent !important;
             color: #1e40af !important; /* Dark blue color for menu text */
           }
 
@@ -354,14 +548,15 @@ const Header: React.FC = () => {
             color: #1d4ed8 !important; /* Darker blue on hover */
           }
 
-          /* Mobile CTA button */
+          /* Mobile CTA button - ultra compact */
           .lg\\:hidden a[href="#booking"] {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
             color: white !important;
-            margin-top: 0.4rem !important;
-            padding: 0.5rem !important;
-            border-radius: 6px !important;
-            box-shadow: 0 1px 6px rgba(59, 130, 246, 0.2) !important;
+            margin-top: 0.75rem !important;
+            padding: 0.75rem !important;
+            border-radius: 8px !important;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2) !important;
+            font-size: 0.95rem !important;
           }
         }
         @media (prefers-reduced-motion: reduce) {
