@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست اتصال به D1 Database</title>
+    <style>
+        body {
+            font-family: 'Tahoma', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 تست اتصال به D1 Database</h1>
+
+        <div class="test-section info">
+            <h3>📋 اطلاعات اتصال:</h3>
+            <p><strong>Worker URL:</strong> <code>https://public-consult-submit.masoud555net.workers.dev</code></p>
+            <p><strong>Database Binding:</strong> <code>DB</code></p>
+            <p><strong>Database Name:</strong> <code>api-consultation-v2-db</code></p>
+        </div>
+
+        <div class="test-section">
+            <h3>🔍 تست‌های موجود:</h3>
+            <button onclick="testGetAll()">دریافت همه رزروها (GET)</button>
+            <button onclick="testCreate()">ایجاد رزرو جدید (POST)</button>
+            <button onclick="testDatabaseConnection()">تست اتصال ساده</button>
+        </div>
+
+        <div id="result" class="test-section"></div>
+    </div>
+
+    <script>
+        async function showResult(message, type = 'info') {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = `test-section ${type}`;
+            resultDiv.style.display = 'block';
+        }
+
+        async function testGetAll() {
+            try {
+                showResult('در حال تست دریافت رزروها...', 'info');
+
+                const response = await fetch('https://public-consult-submit.masoud555net.workers.dev/api/consultations', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(`✅ موفقیت! ${data.data ? data.data.length : 0} رزرو یافت شد.`, 'success');
+                } else {
+                    showResult(`❌ خطا: ${response.status} - ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ خطا در اتصال: ${error.message}`, 'error');
+            }
+        }
+
+        async function testCreate() {
+            try {
+                showResult('در حال ایجاد رزرو جدید...', 'info');
+
+                const testData = {
+                    name: 'تست کاربر',
+                    phone: '09123456789',
+                    consultation_type: 'online',
+                    preferred_date: '2024-12-15',
+                    preferred_time: '14:00',
+                    message: 'این یک تست اتصال به دیتابیس است'
+                };
+
+                const response = await fetch('https://public-consult-submit.masoud555net.workers.dev/api/consultations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult(`✅ موفقیت! رزرو جدید ایجاد شد با ID: ${data.data.id}`, 'success');
+                } else {
+                    const errorData = await response.json();
+                    showResult(`❌ خطا: ${response.status} - ${errorData.error || response.statusText}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ خطا در اتصال: ${error.message}`, 'error');
+            }
+        }
+
+        async function testDatabaseConnection() {
+            try {
+                showResult('در حال تست اتصال ساده...', 'info');
+
+                // تست ساده برای دیدن اینکه سرور پاسخ می‌دهد یا نه
+                const response = await fetch('https://public-consult-submit.masoud555net.workers.dev/api/consultations', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    showResult(`✅ اتصال موفق! سرور پاسخ می‌دهد (کد: ${response.status})`, 'success');
+                } else {
+                    showResult(`❌ خطا در پاسخ سرور: ${response.status} - ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ نمی‌توان به سرور متصل شد: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
