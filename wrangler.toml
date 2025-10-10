@@ -1,0 +1,14 @@
+name = "public-consult-submit"
+main = "worker.js"
+compatibility_date = "2025-10-07"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "api-consultation-v2-db"
+database_id = "1e837268-d988-4816-9215-7adb56fa1a03"
+
+# KV namespace temporarily commented out due to configuration issues
+# [[kv_namespaces]]
+# binding = "CONSULTATIONS"
+# id = "consultations_kv"
+# preview_id = "consultations_kv"
