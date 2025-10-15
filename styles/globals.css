@@ -261,6 +261,72 @@ p {
   }
 }
 
+/* Hide system status bar on mobile devices */
+.status-bar,
+.system-status-bar,
+.top-status-bar,
+.mobile-status-bar,
+.device-status-bar {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Hide browser UI elements that might show time/date */
+.browser-ui-time,
+.browser-ui-date,
+.system-time-display,
+.system-date-display {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide any floating time/date widgets */
+.floating-time-widget,
+.floating-date-widget,
+.system-widget-time,
+.system-widget-date {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Override any system UI that might be showing */
+* {
+  /* Remove any system time overlays */
+  --system-time-display: none !important;
+}
+
+/* Hide iOS notch/safe area time display */
+.safe-area-time,
+.notch-time-display,
+.dynamic-island-time {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Hide Android status bar time */
+.android-status-bar,
+.status-bar-time,
+.status-bar-date {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
 /* Mobile-first container */
 .container {
   width: 100%;

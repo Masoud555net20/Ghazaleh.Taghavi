@@ -2,75 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAccessibility } from './AccessibilityProvider';
 
-// کامپوننت نمایش تاریخ و زمان تهران برای موبایل - طراحی زیبا با افکت
-const TehranTimeDisplay: React.FC = () => {
-  const [currentTime, setCurrentTime] = useState<string>('');
-  const [currentDate, setCurrentDate] = useState<string>('');
 
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const tehranTime = now.toLocaleString('fa-IR', {
-        timeZone: 'Asia/Tehran',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      });
-
-      // فرمت ساده و خوانا
-      const timeParts = tehranTime.split(',');
-      const date = timeParts[0] || '';
-      const time = timeParts[1] ? timeParts[1].trim() : '';
-
-      setCurrentDate(date);
-      setCurrentTime(time);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="lg:hidden flex flex-col items-center text-center -mt-3 animate-tehran-time-float">
-      <div className="relative">
-        {/* کادر کوچکتر و مرتب */}
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200/50 rounded-lg px-3 py-1.5 shadow-md hover:shadow-lg transition-all duration-300 backdrop-blur-sm">
-          <div className="flex items-center gap-1.5">
-            {/* آیکون ساعت کوچکتر با افکت درخشان */}
-            <div className="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center animate-icon-glow">
-              <span className="text-white text-xs">🕐</span>
-            </div>
-
-            {/* متن زمان و تاریخ کوچکتر */}
-            <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold text-gray-800 animate-text-shimmer" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
-                {currentTime}
-              </span>
-              <span className="text-xs text-gray-600 font-medium leading-tight" style={{ fontFamily: 'Shabnam, Vazir, Samim, Nahid, sans-serif' }}>
-                {currentDate}
-              </span>
-            </div>
-
-            {/* نقطه کوچک رنگی با انیمیشن */}
-            <div className="w-1.5 h-1.5 bg-gradient-to-r from-green-400 to-blue-400 rounded-full animate-pulse"></div>
-          </div>
-
-          {/* افکت نورانی زیر کادر */}
-          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/10 to-purple-400/10 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-        </div>
-
-        {/* ذرات شناور کوچکتر اطراف کادر */}
-        <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-300 rounded-full animate-particle-float opacity-60"></div>
-        <div className="absolute -bottom-0.5 -left-0.5 w-1 h-1 bg-purple-300 rounded-full animate-particle-float opacity-60" style={{ animationDelay: '1s' }}></div>
-      </div>
-    </div>
-  );
-};
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -136,9 +68,15 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className="sticky top-0 z-50 transition-all duration-300 bg-white shadow-xl border-b border-black/10"
+      className={`sticky -top-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-xl border-b border-black/10' : 'bg-transparent'}`}
       role="banner"
       aria-label="هدر اصلی وبسایت"
+      style={{
+        // Hide system status bar on mobile
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        // Ensure header is above system UI
+        zIndex: 9999
+      }}
     >
 
       <div className="container mx-auto px-4 py-2 max-w-7xl">
@@ -200,7 +138,6 @@ const Header: React.FC = () => {
 
           {/* Mobile Time and Menu Section */}
           <div className="lg:hidden flex items-center gap-3 ml-2">
-            <TehranTimeDisplay />
             <button
               ref={mobileMenuButtonRef}
               className="p-2.5 rounded-lg transition-all duration-300 text-white bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -386,58 +323,7 @@ const Header: React.FC = () => {
           animation: multi-color-border 2s ease-in-out infinite;
         }
 
-        /* انیمیشن‌های بخش زمان تهران */
-        @keyframes tehran-time-float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-2px) scale(1.02); }
-        }
-        .animate-tehran-time-float {
-          animation: tehran-time-float 4s ease-in-out infinite;
-        }
 
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient-shift {
-          background-size: 200% 200%;
-          animation: gradient-shift 3s ease infinite;
-        }
-
-        @keyframes text-shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-        .animate-text-shimmer {
-          background: linear-gradient(90deg, #1e40af 25%, #3b82f6 50%, #1e40af 75%);
-          background-size: 200% 100%;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: text-shimmer 2s linear infinite;
-        }
-
-        @keyframes icon-glow {
-          0%, 100% {
-            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3);
-          }
-          50% {
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 25px rgba(59, 130, 246, 0.5);
-          }
-        }
-        .animate-icon-glow {
-          animation: icon-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes particle-float {
-          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
-          33% { transform: translateY(-8px) translateX(4px); opacity: 1; }
-          66% { transform: translateY(4px) translateX(-4px); opacity: 0.8; }
-        }
-        .animate-particle-float {
-          animation: particle-float 3s ease-in-out infinite;
-        }
 
         /* Enhanced Mobile Menu Animations */
         @keyframes mobile-menu-slide {
