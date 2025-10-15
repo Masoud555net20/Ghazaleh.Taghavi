@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست تلگرام</title>
+    <style>
+        body {
+            font-family: 'Tahoma', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 تست اتصال تلگرام</h1>
+        <p>این صفحه برای تست اتصال به سرویس تلگرام استفاده می‌شود.</p>
+
+        <button onclick="testConnection()">تست اتصال به ربات</button>
+        <button onclick="sendTestMessage()">ارسال پیام تست</button>
+        <button onclick="sendConsultationTest()">تست ارسال رزرو مشاوره</button>
+
+        <div id="result" class="result"></div>
+
+        <h3>اطلاعات تست:</h3>
+        <ul>
+            <li><strong>Bot Token:</strong> <code id="botToken"></code></li>
+            <li><strong>Chat ID:</strong> <code id="chatId"></code></li>
+            <li><strong>Worker URL:</strong> <code id="workerUrl"></code></li>
+        </ul>
+    </div>
+
+    <script type="module">
+        // نمایش اطلاعات از environment variables
+        document.getElementById('botToken').textContent = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || 'نامشخص';
+        document.getElementById('chatId').textContent = import.meta.env.VITE_TELEGRAM_CHAT_ID || 'نامشخص';
+        document.getElementById('workerUrl').textContent = import.meta.env.VITE_TELEGRAM_WORKER_URL || 'نامشخص';
+
+        async function showResult(message, isSuccess = true) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = `result ${isSuccess ? 'success' : 'error'}`;
+            resultDiv.style.display = 'block';
+        }
+
+        async function testConnection() {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_TELEGRAM_WORKER_URL}/api/telegram/test`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showResult(`✅ تست اتصال موفق!\n\nپیام: ${result.message}\nربات: ${result.bot_info?.name} (@${result.bot_info?.username})`, true);
+                } else {
+                    showResult(`❌ خطا در تست اتصال:\n\n${result.error || result.message}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ خطا در اتصال به سرور:\n\n${error.message}`, false);
+            }
+        }
+
+        async function sendTestMessage() {
+            try {
+                const testMessage = {
+                    text: `🧪 <b>پیام تست از وبسایت</b>\n\n⏰ زمان: ${new Date().toLocaleString('fa-IR')}\n🌐 از: ${window.location.origin}\n\n✅ اتصال تلگرام فعال است!`,
+                    parse_mode: 'HTML'
+                };
+
+                const response = await fetch(`${import.meta.env.VITE_TELEGRAM_WORKER_URL}/send`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testMessage)
+                });
+
+                const result = await response.text();
+
+                if (response.ok) {
+                    showResult(`✅ پیام تست ارسال شد!\n\nپاسخ: ${result}`, true);
+                } else {
+                    showResult(`❌ خطا در ارسال پیام:\n\n${result}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ خطا در اتصال به سرور:\n\n${error.message}`, false);
+            }
+        }
+
+        async function sendConsultationTest() {
+            try {
+                const testConsultation = {
+                    name: 'تست کاربر',
+                    phone: '09123456789',
+                    consultation_type: 'phone',
+                    preferred_date: new Date().toISOString().split('T')[0],
+                    preferred_time: '14:00',
+                    consultation_topic: 'تست موضوع مشاوره',
+                    problem_description: 'این یک تست برای بررسی عملکرد سیستم رزرو مشاوره است.',
+                    province: 'تهران',
+                    city: 'تهران',
+                    message: 'این پیام برای تست ارسال شده است.'
+                };
+
+                const response = await fetch(`${import.meta.env.VITE_TELEGRAM_WORKER_URL}/consultation`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testConsultation)
+                });
+
+                const result = await response.text();
+
+                if (response.ok) {
+                    showResult(`✅ رزرو مشاوره تست ارسال شد!\n\nپاسخ: ${result}`, true);
+                } else {
+                    showResult(`❌ خطا در ارسال رزرو مشاوره:\n\n${result}`, false);
+                }
+            } catch (error) {
+                showResult(`❌ خطا در اتصال به سرور:\n\n${error.message}`, false);
+            }
+        }
+    </script>
+</body>
+</html>

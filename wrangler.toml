@@ -1,4 +1,4 @@
-name = "public-consult-submit"
+name = "public-api"
 main = "worker.js"
 compatibility_date = "2025-10-07"
 
@@ -12,3 +12,9 @@ database_id = "1e837268-d988-4816-9215-7adb56fa1a03"
 # binding = "CONSULTATIONS"
 # id = "consultations_kv"
 # preview_id = "consultations_kv"
+
+# Worker جدید برای ارسال نوتیفیکیشن به تلگرام
+[[workers]]
+name = "telegram-notifier"
+main = "telegram-worker.js"
+compatibility_date = "2025-10-07"

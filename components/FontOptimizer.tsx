@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface FontOptimizerProps {
   fonts?: string[];
@@ -9,20 +9,37 @@ const FontOptimizer: React.FC<FontOptimizerProps> = ({
   fonts = ['Vazirmatn', 'IranNastaliq'],
   onFontsLoaded
 }) => {
+  const hasCompleted = useRef(false);
+
   useEffect(() => {
-    // Check if fonts are already loaded
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        console.log('Fonts loaded successfully');
-        onFontsLoaded?.();
-      });
+    // Prevent multiple executions
+    if (hasCompleted.current) {
+      return;
     }
 
-    // Fallback for browsers without font API
-    const fontTimer = setTimeout(() => {
-      console.log('Font loading timeout - assuming fonts are loaded');
-      onFontsLoaded?.();
-    }, 3000);
+    const handleFontsLoaded = () => {
+      if (!hasCompleted.current) {
+        hasCompleted.current = true;
+        // Use setTimeout to avoid blocking the main thread
+        setTimeout(() => {
+          onFontsLoaded?.();
+        }, 0);
+      }
+    };
+
+    // Check if fonts are already loaded
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(handleFontsLoaded).catch(() => {
+        // If font API fails, use timeout fallback
+        setTimeout(handleFontsLoaded, 50);
+      });
+    } else {
+      // Fallback for browsers without font API - shorter timeout for better UX
+      setTimeout(handleFontsLoaded, 500);
+    }
+
+    // Additional fallback timeout to prevent indefinite waiting
+    const fontTimer = setTimeout(handleFontsLoaded, 1500);
 
     return () => clearTimeout(fontTimer);
   }, [onFontsLoaded]);

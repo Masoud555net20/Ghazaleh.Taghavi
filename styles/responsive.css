@@ -1,0 +1,139 @@
+/* Responsive CSS - Mobile-first responsive design */
+
+/* Mobile-first responsive typography */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 640px) {
+  html { font-size: 15px; }
+}
+
+@media (min-width: 768px) {
+  html { font-size: 16px; }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 15px; }
+}
+
+/* Mobile-first utility classes */
+.mobile-only { display: block; }
+@media (min-width: 640px) {
+  .mobile-only { display: none; }
+}
+
+.desktop-only { display: none; }
+@media (min-width: 640px) {
+  .desktop-only { display: block; }
+}
+
+/* Mobile-first container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Enhanced mobile typography for better readability */
+@media (max-width: 640px) {
+  /* Larger headings for mobile */
+  h1 { font-size: 2rem; line-height: 1.1; }
+  h2 { font-size: 1.75rem; line-height: 1.2; }
+  h3 { font-size: 1.5rem; line-height: 1.25; }
+  h4 { font-size: 1.25rem; line-height: 1.3; }
+  h5 { font-size: 1.125rem; line-height: 1.35; }
+  h6 { font-size: 1rem; line-height: 1.4; }
+
+  /* Larger body text for mobile */
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  /* Enhanced line height for Persian text */
+  body {
+    line-height: 1.9;
+  }
+}
+
+/* Tablet typography improvements */
+@media (min-width: 641px) and (max-width: 1023px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.625rem; }
+  p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-weight: 600;
+  }
+}
+
+/* Touch Target Improvements */
+@media (max-width: 640px) {
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+  }
+
+  /* Larger text for mobile */
+  body {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.75rem; }
+  h4 { font-size: 1.5rem; }
+  h5 { font-size: 1.25rem; }
+  h6 { font-size: 1.125rem; }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 640px) {
+  a, button, input, textarea, select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Enhanced mobile typography for better readability */
+@media (max-width: 640px) {
+  /* Larger buttons and interactive elements */
+  button, .btn {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    min-height: 3rem;
+  }
+
+  /* Better spacing for mobile */
+  .container {
+    padding: 0 1.5rem;
+  }
+}

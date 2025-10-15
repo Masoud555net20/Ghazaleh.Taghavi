@@ -13,13 +13,29 @@ export default defineConfig(({ mode }) => {
       build: {
         sourcemap: mode === 'production' ? false : true,
         minify: 'terser',
-        chunkSizeWarningLimit: 1000,
+        chunkSizeWarningLimit: 500,
         rollupOptions: {
           output: {
-            manualChunks: {
-              vendor: ['react', 'react-dom'],
-              router: ['react-router-dom'],
-              utils: ['axios'],
+            manualChunks: (id) => {
+              // React ecosystem - بالاترین اولویت
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              // React Router
+              if (id.includes('react-router')) {
+                return 'router';
+              }
+              // Large UI libraries - جدا کردن jalaali-js برای بهبود عملکرد
+              if (id.includes('jalaali-js')) {
+                return 'jalaali';
+              }
+              if (id.includes('lucide-react')) {
+                return 'icons';
+              }
+              // Node modules بزرگ
+              if (id.includes('node_modules')) {
+                return 'vendor';
+              }
             },
             assetFileNames: (assetInfo) => {
               const info = assetInfo.name!.split('.');

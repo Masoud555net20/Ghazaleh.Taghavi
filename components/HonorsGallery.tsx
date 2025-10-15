@@ -320,7 +320,7 @@ const HonorsGallery: React.FC = () => {
               </button>
 
               {/* Image Container */}
-              <div className="relative max-w-5xl max-h-[90vh] animate-scale-in">
+              <div className="relative max-w-3xl max-h-[80vh] animate-scale-in">
                 <img
                   src={selectedImage}
                   alt="Selected Honor"
@@ -368,7 +368,7 @@ const HonorsGallery: React.FC = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           0% { opacity: 0; }
           100% { opacity: 1; }

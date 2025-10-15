@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
   }, [currentIndex]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-start justify-center text-white text-center overflow-hidden bg-black pt-[15vh] sm:pt-0 sm:items-center">
+    <section id="home" className="relative min-h-screen flex items-start justify-center text-white text-center overflow-hidden bg-black pt-[8vh] sm:pt-0 sm:items-center">
       {/* Background Image Slideshow */}
       {images.map((src, index) => {
         const slideStyle: React.CSSProperties = {
@@ -480,15 +480,15 @@ const Hero: React.FC = () => {
             filter: brightness(0.75) contrast(1.2) saturate(1.15) !important; /* Enhanced visual appeal */
           }
           .mobile-top-content {
-            margin-top: 15vh !important; /* Content positioned perfectly */
-            padding-top: 2vh !important;
+            margin-top: 8vh !important; /* Content positioned higher */
+            padding-top: 1vh !important;
             flex: 1 !important;
             display: flex !important;
             flex-direction: column !important;
             justify-content: flex-start !important; /* Content at top */
           }
           .hero-title {
-            font-size: 5.5rem !important; /* Even larger for mobile impact and beauty */
+            font-size: 7rem !important; /* Larger for mobile impact and beauty as requested */
             margin-bottom: 1.5rem !important;
             animation-duration: 3s !important;
             -webkit-text-stroke: 1px transparent !important;
@@ -508,20 +508,20 @@ const Hero: React.FC = () => {
           /* Perfect Button layout for mobile */
           .flex.flex-col.justify-center.gap-4 {
             width: 100% !important;
-            max-width: 320px !important; /* Even larger mobile width for better layout */
+            max-width: 480px !important; /* Even more elongated mobile width */
             margin: 0 auto !important;
-            gap: 1.2rem !important; /* More space between buttons */
+            gap: 1rem !important; /* Tighter spacing between buttons */
           }
           .flex.flex-col.justify-center.gap-4 a {
             width: 100% !important;
-            padding: 18px 24px !important; /* Even larger touch targets */
-            font-size: 1.2rem !important; /* Larger readable size */
+            padding: 12px 20px !important; /* Smaller and more elongated */
+            font-size: 1rem !important; /* Smaller readable size */
             font-weight: 600 !important;
-            border-radius: 14px !important;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+            border-radius: 12px !important; /* Slightly smaller border radius */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important; /* Smaller shadow */
             transform: translateY(0) !important;
             transition: all 0.3s ease !important;
-            min-height: 58px !important; /* Even larger mobile touch target */
+            min-height: 48px !important; /* Smaller mobile touch target */
           }
           .flex.flex-col.justify-center.gap-4 a:hover,
           .flex.flex-col.justify-center.gap-4 a:active {

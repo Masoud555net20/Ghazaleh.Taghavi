@@ -1,11 +1,19 @@
-/* Mobile-First Global Styles - Performance Optimized */
+/* Import CSS chunks for better performance */
+@import './base.css';
+@import './typography.css';
+@import './accessibility.css';
+@import './animations.css';
+@import './responsive.css';
+@import './components.css';
+
+/* Critical styles that cannot be deferred */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Default color scheme (light theme) */
+/* Essential CSS variables for immediate rendering */
 :root {
   --color-primary: #3b82f6;
   --color-secondary: #1e40af;
@@ -20,7 +28,7 @@
   --color-error: #ef4444;
 }
 
-/* Performance optimizations */
+/* Critical performance optimizations */
 img {
   max-width: 100%;
   height: auto;

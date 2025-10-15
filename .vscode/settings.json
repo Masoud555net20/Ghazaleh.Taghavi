@@ -1,3 +1,4 @@
 {
-    "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose"
+    "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+    "chatgpt.gpt3.apiKey": "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"
 }

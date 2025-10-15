@@ -1,0 +1,95 @@
+/* Animations CSS - Performance optimized animations */
+
+/* GPU acceleration for animations */
+.animate-fade-in-down,
+.animate-fade-in-up,
+.hero-bg,
+.luxury-button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize transitions */
+* {
+  transition-property: transform, opacity, box-shadow, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-down,
+  .animate-fade-in-up,
+  .hero-bg,
+  .luxury-button,
+  .loading-spinner {
+    animation: none !important;
+  }
+}
+
+/* Touch Target Improvements */
+@media (max-width: 640px) {
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+  }
+
+  /* Larger text for mobile */
+  body {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.75rem; }
+  h4 { font-size: 1.5rem; }
+  h5 { font-size: 1.25rem; }
+  h6 { font-size: 1.125rem; }
+}
+
+/* High Contrast Media Query */
+@media (prefers-contrast: high) {
+  button,
+  input,
+  textarea,
+  select {
+    border-width: 2px;
+  }
+
+  *:focus-visible {
+    outline-width: 4px;
+  }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 640px) {
+  a, button, input, textarea, select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Enhanced mobile typography for better readability */
+@media (max-width: 640px) {
+  /* Larger buttons and interactive elements */
+  button, .btn {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    min-height: 3rem;
+  }
+
+  /* Better spacing for mobile */
+  .container {
+    padding: 0 1.5rem;
+  }
+}
